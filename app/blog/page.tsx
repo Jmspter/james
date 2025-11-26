@@ -1,0 +1,389 @@
+"use client";
+
+import { motion } from "framer-motion";
+import { ArrowLeft, ArrowRight, Clock, Calendar, Search, Tag } from "lucide-react";
+import Image from "next/image";
+import Link from "next/link";
+import { useState } from "react";
+
+interface BlogPost {
+    id: string;
+    title: string;
+    excerpt: string;
+    content?: string;
+    image: string;
+    category: string;
+    author: {
+        name: string;
+        avatar: string;
+    };
+    date: string;
+    readTime: string;
+    featured?: boolean;
+}
+
+const blogPosts: BlogPost[] = [
+    {
+        id: "scaling-nodejs-production",
+        title: "Scaling Node.js Applications in Production",
+        excerpt: "Learn the best practices for scaling Node.js applications to handle millions of requests. From clustering to load balancing, we cover it all.",
+        image: "/blog/nodejs-scaling.jpg",
+        category: "Backend",
+        author: { name: "James", avatar: "/avatar.jpg" },
+        date: "Nov 20, 2024",
+        readTime: "8 min read",
+        featured: true,
+    },
+    {
+        id: "microservices-architecture",
+        title: "Microservices Architecture: A Practical Guide",
+        excerpt: "Breaking down monoliths into microservices. When to do it, how to do it right, and common pitfalls to avoid.",
+        image: "/blog/microservices.jpg",
+        category: "Architecture",
+        author: { name: "James", avatar: "/avatar.jpg" },
+        date: "Nov 15, 2024",
+        readTime: "12 min read",
+    },
+    {
+        id: "postgresql-optimization",
+        title: "PostgreSQL Performance Optimization Tips",
+        excerpt: "Deep dive into PostgreSQL query optimization, indexing strategies, and configuration tuning for high-traffic applications.",
+        image: "/blog/postgresql.jpg",
+        category: "Database",
+        author: { name: "James", avatar: "/avatar.jpg" },
+        date: "Nov 10, 2024",
+        readTime: "10 min read",
+    },
+    {
+        id: "docker-kubernetes-basics",
+        title: "From Docker to Kubernetes: A Developer's Journey",
+        excerpt: "Understanding containerization and orchestration. A step-by-step guide to deploying your first Kubernetes cluster.",
+        image: "/blog/kubernetes.jpg",
+        category: "DevOps",
+        author: { name: "James", avatar: "/avatar.jpg" },
+        date: "Nov 5, 2024",
+        readTime: "15 min read",
+    },
+    {
+        id: "api-security-best-practices",
+        title: "API Security Best Practices in 2024",
+        excerpt: "Protecting your APIs from common vulnerabilities. OAuth2, JWT, rate limiting, and more security patterns explained.",
+        image: "/blog/api-security.jpg",
+        category: "Security",
+        author: { name: "James", avatar: "/avatar.jpg" },
+        date: "Oct 28, 2024",
+        readTime: "9 min read",
+    },
+    {
+        id: "redis-caching-strategies",
+        title: "Redis Caching Strategies for High Performance",
+        excerpt: "Implementing effective caching with Redis. Cache invalidation, TTL strategies, and real-world use cases.",
+        image: "/blog/redis.jpg",
+        category: "Backend",
+        author: { name: "James", avatar: "/avatar.jpg" },
+        date: "Oct 20, 2024",
+        readTime: "7 min read",
+    },
+    {
+        id: "graphql-vs-rest",
+        title: "GraphQL vs REST: Choosing the Right API",
+        excerpt: "A comprehensive comparison between GraphQL and REST APIs. When to use each and how to make the right choice for your project.",
+        image: "/blog/graphql.jpg",
+        category: "Architecture",
+        author: { name: "James", avatar: "/avatar.jpg" },
+        date: "Oct 15, 2024",
+        readTime: "11 min read",
+    },
+    {
+        id: "ci-cd-pipelines",
+        title: "Building Robust CI/CD Pipelines",
+        excerpt: "Automating your deployment workflow with GitHub Actions, Jenkins, and GitLab CI. Best practices and real examples.",
+        image: "/blog/cicd.jpg",
+        category: "DevOps",
+        author: { name: "James", avatar: "/avatar.jpg" },
+        date: "Oct 10, 2024",
+        readTime: "13 min read",
+    },
+];
+
+const categories = ["All", "Backend", "Architecture", "Database", "DevOps", "Security"];
+
+export default function BlogPage() {
+    const [selectedCategory, setSelectedCategory] = useState("All");
+    const [searchQuery, setSearchQuery] = useState("");
+
+    const featuredPost = blogPosts.find((post) => post.featured);
+    const filteredPosts = blogPosts.filter((post) => {
+        const matchesCategory = selectedCategory === "All" || post.category === selectedCategory;
+        const matchesSearch = post.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+            post.excerpt.toLowerCase().includes(searchQuery.toLowerCase());
+        return matchesCategory && matchesSearch && !post.featured;
+    });
+
+    return (
+        <main className="min-h-screen bg-bg-main text-text-main">
+            {/* Header */}
+            <header className="sticky top-0 z-50 bg-bg-main/80 backdrop-blur-xl border-b border-white/5">
+                <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+                    <Link href="/" className="flex items-center gap-2 text-text-main hover:text-primary transition-colors">
+                        <ArrowLeft className="w-5 h-5" />
+                        <span className="font-medium">Back to Portfolio</span>
+                    </Link>
+                    <div className="flex items-center gap-4">
+                        <div className="relative">
+                            <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-text-muted" />
+                            <input
+                                type="text"
+                                placeholder="Search articles..."
+                                value={searchQuery}
+                                onChange={(e) => setSearchQuery(e.target.value)}
+                                className="pl-10 pr-4 py-2 bg-bg-surface border border-white/10 rounded-full text-sm text-text-main placeholder:text-text-muted focus:outline-none focus:border-primary/50 transition-colors w-64"
+                            />
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <div className="max-w-7xl mx-auto px-6 py-12">
+                {/* Page Title */}
+                <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    className="mb-12"
+                >
+                    <h1 className="text-4xl md:text-6xl font-heading font-bold mb-4">
+                        Technical <span className="text-primary">Blog</span>
+                    </h1>
+                    <p className="text-text-muted text-lg max-w-2xl">
+                        Insights, tutorials, and thoughts on backend development, system architecture, and DevOps practices.
+                    </p>
+                </motion.div>
+
+                {/* Featured Post */}
+                {featuredPost && (
+                    <motion.div
+                        initial={{ opacity: 0, y: 30 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: 0.1 }}
+                        className="mb-16"
+                    >
+                        <Link href={`/blog/${featuredPost.id}`}>
+                            <div className="group relative h-[500px] rounded-3xl overflow-hidden cursor-pointer">
+                                {/* Background Image */}
+                                <div className="absolute inset-0">
+                                    <div className="w-full h-full bg-gradient-to-br from-primary/20 via-bg-surface to-secondary/20" />
+                                    <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_50%,_var(--tw-gradient-stops))] from-primary/10 via-transparent to-transparent" />
+                                </div>
+
+                                {/* Content */}
+                                <div className="relative h-full flex flex-col justify-end p-8 md:p-12">
+                                    <motion.span
+                                        initial={{ opacity: 0, x: -20 }}
+                                        animate={{ opacity: 1, x: 0 }}
+                                        transition={{ delay: 0.2 }}
+                                        className="inline-flex items-center gap-2 px-4 py-1.5 bg-primary/20 backdrop-blur-sm border border-primary/30 rounded-full text-primary text-sm font-medium w-fit mb-4"
+                                    >
+                                        <span className="w-2 h-2 rounded-full bg-primary animate-pulse" />
+                                        Featured
+                                    </motion.span>
+
+                                    <h2 className="text-3xl md:text-5xl font-heading font-bold text-text-main mb-4 group-hover:text-primary transition-colors duration-300 max-w-3xl">
+                                        {featuredPost.title}
+                                    </h2>
+
+                                    <p className="text-text-muted text-lg mb-6 max-w-2xl line-clamp-2">
+                                        {featuredPost.excerpt}
+                                    </p>
+
+                                    <div className="flex items-center gap-6">
+                                        <div className="flex items-center gap-3">
+                                            <div className="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center text-primary font-bold">
+                                                {featuredPost.author.name[0]}
+                                            </div>
+                                            <div>
+                                                <p className="text-text-main font-medium">{featuredPost.author.name}</p>
+                                                <p className="text-text-muted text-sm">{featuredPost.date}</p>
+                                            </div>
+                                        </div>
+                                        <div className="flex items-center gap-2 text-text-muted text-sm">
+                                            <Clock className="w-4 h-4" />
+                                            {featuredPost.readTime}
+                                        </div>
+                                    </div>
+
+                                    {/* Arrow indicator */}
+                                    <div className="absolute right-8 md:right-12 top-1/2 -translate-y-1/2 w-14 h-14 rounded-full bg-primary/10 backdrop-blur-sm border border-primary/20 flex items-center justify-center group-hover:bg-primary group-hover:border-primary transition-all duration-300">
+                                        <ArrowRight className="w-6 h-6 text-primary group-hover:text-bg-main transition-colors" />
+                                    </div>
+                                </div>
+                            </div>
+                        </Link>
+                    </motion.div>
+                )}
+
+                {/* Category Filter */}
+                <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.2 }}
+                    className="flex flex-wrap gap-3 mb-10"
+                >
+                    {categories.map((category) => (
+                        <button
+                            key={category}
+                            onClick={() => setSelectedCategory(category)}
+                            className={`px-5 py-2.5 rounded-full text-sm font-medium transition-all duration-300 ${
+                                selectedCategory === category
+                                    ? "bg-primary text-bg-main"
+                                    : "bg-bg-surface border border-white/10 text-text-muted hover:border-primary/50 hover:text-primary"
+                            }`}
+                        >
+                            {category}
+                        </button>
+                    ))}
+                </motion.div>
+
+                {/* Section Title */}
+                <motion.h3
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ delay: 0.25 }}
+                    className="text-2xl font-heading font-semibold mb-8 text-text-main"
+                >
+                    Recent blog posts
+                </motion.h3>
+
+                {/* Blog Grid */}
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    {filteredPosts.map((post, index) => (
+                        <motion.article
+                            key={post.id}
+                            initial={{ opacity: 0, y: 30 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ delay: 0.1 + index * 0.05 }}
+                        >
+                            <Link href={`/blog/${post.id}`}>
+                                <div className="group cursor-pointer">
+                                    {/* Image Container */}
+                                    <div className="relative h-52 rounded-2xl overflow-hidden mb-5 bg-bg-surface">
+                                        <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-bg-highlight to-secondary/10" />
+                                        <div className="absolute inset-0 flex items-center justify-center">
+                                            <Tag className="w-12 h-12 text-primary/30" />
+                                        </div>
+                                        <div className="absolute inset-0 bg-bg-main/0 group-hover:bg-bg-main/20 transition-colors duration-300" />
+                                        
+                                        {/* Category Badge */}
+                                        <div className="absolute top-4 left-4 px-3 py-1 bg-bg-main/80 backdrop-blur-sm rounded-full text-xs font-medium text-primary border border-primary/20">
+                                            {post.category}
+                                        </div>
+                                    </div>
+
+                                    {/* Content */}
+                                    <div className="space-y-3">
+                                        <h3 className="text-xl font-heading font-semibold text-text-main group-hover:text-primary transition-colors duration-300 line-clamp-2">
+                                            {post.title}
+                                        </h3>
+
+                                        <p className="text-text-muted text-sm line-clamp-2 leading-relaxed">
+                                            {post.excerpt}
+                                        </p>
+
+                                        {/* Author & Meta */}
+                                        <div className="flex items-center gap-3 pt-2">
+                                            <div className="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center text-primary text-sm font-bold">
+                                                {post.author.name[0]}
+                                            </div>
+                                            <div className="flex items-center gap-2 text-sm text-text-muted">
+                                                <span className="font-medium text-text-main">{post.author.name}</span>
+                                                <span>•</span>
+                                                <span>{post.date}</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </Link>
+                        </motion.article>
+                    ))}
+                </div>
+
+                {/* Empty State */}
+                {filteredPosts.length === 0 && (
+                    <motion.div
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        className="text-center py-20"
+                    >
+                        <div className="w-20 h-20 mx-auto mb-6 rounded-full bg-bg-surface flex items-center justify-center">
+                            <Search className="w-8 h-8 text-text-muted" />
+                        </div>
+                        <h3 className="text-xl font-heading font-semibold mb-2">No posts found</h3>
+                        <p className="text-text-muted">Try adjusting your search or filter criteria.</p>
+                    </motion.div>
+                )}
+
+                {/* Load More Button */}
+                {filteredPosts.length > 0 && (
+                    <motion.div
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        transition={{ delay: 0.5 }}
+                        className="flex justify-center mt-12"
+                    >
+                        <button className="px-8 py-3 bg-bg-surface border border-white/10 rounded-full text-text-main font-medium hover:border-primary/50 hover:text-primary transition-all duration-300">
+                            Loading more...
+                        </button>
+                    </motion.div>
+                )}
+            </div>
+
+            {/* Newsletter CTA */}
+            <section className="border-t border-white/5 bg-bg-surface/50">
+                <div className="max-w-7xl mx-auto px-6 py-20">
+                    <motion.div
+                        initial={{ opacity: 0, y: 30 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        className="text-center"
+                    >
+                        <h2 className="text-3xl md:text-4xl font-heading font-bold mb-4">
+                            Let's get started on something <span className="text-primary">great</span>
+                        </h2>
+                        <p className="text-text-muted mb-8 max-w-md mx-auto">
+                            Subscribe to get notified about new articles and backend development tips.
+                        </p>
+                        <div className="flex flex-col sm:flex-row gap-4 justify-center max-w-md mx-auto">
+                            <input
+                                type="email"
+                                placeholder="Enter your email"
+                                className="flex-1 px-5 py-3 bg-bg-main border border-white/10 rounded-xl text-text-main placeholder:text-text-muted focus:outline-none focus:border-primary/50 transition-colors"
+                            />
+                            <button className="px-6 py-3 bg-primary text-bg-main font-semibold rounded-xl hover:bg-secondary transition-colors">
+                                Subscribe
+                            </button>
+                        </div>
+                    </motion.div>
+                </div>
+            </section>
+
+            {/* Footer */}
+            <footer className="border-t border-white/5 py-8">
+                <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-4">
+                    <p className="text-text-muted text-sm">
+                        © 2024 James. All rights reserved.
+                    </p>
+                    <div className="flex items-center gap-6">
+                        <Link href="/" className="text-text-muted hover:text-primary text-sm transition-colors">
+                            Home
+                        </Link>
+                        <Link href="/blog" className="text-text-muted hover:text-primary text-sm transition-colors">
+                            Blog
+                        </Link>
+                        <Link href="/#projects" className="text-text-muted hover:text-primary text-sm transition-colors">
+                            Projects
+                        </Link>
+                    </div>
+                </div>
+            </footer>
+        </main>
+    );
+}

@@ -1,26 +1,142 @@
 @import "tailwindcss";
 
+@theme {
+  --color-cream: #F5F5F5;
+  /* Text Main */
+  --color-sand: #A0A0A0;
+  /* Text Muted */
+  --color-soft-brown: #CC5E12;
+  /* Secondary Orange */
+  --color-dark-brown: #1A1A1A;
+  /* Surface */
+  --color-warm-black: #0D0D0D;
+  /* Background */
+  --color-soft-amber: #FF7A1A;
+  /* Primary Orange */
+
+  /* Semantic aliases for easier refactoring */
+  --color-bg-main: #0D0D0D;
+  --color-bg-surface: #1A1A1A;
+  --color-bg-highlight: #262626;
+  --color-primary: #FF7A1A;
+  --color-secondary: #CC5E12;
+  --color-text-main: #F5F5F5;
+  --color-text-muted: #A0A0A0;
+
+  --font-sans: var(--font-manrope), ui-sans-serif, system-ui, sans-serif;
+  --font-heading: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+}
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --background: var(--color-cream);
+  --foreground: var(--color-warm-black);
 }
 
 body {
-  background: var(--background);
+  background-color: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+}
+
+@keyframes flicker {
+  0% {
+    opacity: 0.1;
+  }
+
+  5% {
+    opacity: 0.2;
+  }
+
+  10% {
+    opacity: 0.1;
+  }
+
+  15% {
+    opacity: 0.3;
+  }
+
+  20% {
+    opacity: 0.1;
+  }
+
+  50% {
+    opacity: 0.1;
+  }
+
+  55% {
+    opacity: 0.2;
+  }
+
+  60% {
+    opacity: 0.1;
+  }
+
+  100% {
+    opacity: 0.1;
+  }
+}
+
+/* Custom Scrollbar Styles */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-primary) var(--color-bg-surface);
+}
+
+/* Webkit browsers (Chrome, Safari, Edge) */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-bg-surface);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(
+    180deg,
+    var(--color-primary) 0%,
+    var(--color-secondary) 100%
+  );
+  border-radius: 10px;
+  border: 2px solid var(--color-bg-surface);
+  transition: all 0.3s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(
+    180deg,
+    var(--color-primary) 20%,
+    var(--color-secondary) 80%
+  );
+  border: 1px solid var(--color-bg-surface);
+}
+
+::-webkit-scrollbar-corner {
+  background: var(--color-bg-surface);
+}
+
+/* Modal specific scrollbar - thinner and more subtle */
+.custom-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-primary) transparent;
+}
+
+.custom-scrollbar::-webkit-scrollbar {
+  width: 6px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+  margin: 10px 0;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: var(--color-bg-highlight);
+  border-radius: 10px;
+  border: none;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: var(--color-primary);
 }
