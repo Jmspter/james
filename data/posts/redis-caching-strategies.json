@@ -1,0 +1,13 @@
+{
+    "id": "redis-caching-strategies",
+    "title": "Redis Caching Strategies for High Performance",
+    "excerpt": "Implementing effective caching with Redis. Cache invalidation, TTL strategies, and real-world use cases.",
+    "image": "/blog/redis.jpg",
+    "category": "Backend",
+    "author": { "name": "James", "avatar": "/avatar.jpg" },
+    "date": "Oct 20, 2024",
+    "readTime": "7 min read",
+    "featured": false,
+    "tags": ["Redis", "Caching", "Performance", "Backend"],
+    "content": "## Introduction\n\nRedis is the go-to solution for caching in modern applications. Let's explore effective caching strategies.\n\n## Caching Patterns\n\n### Cache-Aside\nApplication checks cache first, then database:\n\n```javascript\nasync function getUser(id) {\n  let user = await redis.get(`user:${id}`);\n  if (!user) {\n    user = await db.findUser(id);\n    await redis.set(`user:${id}`, user, 'EX', 3600);\n  }\n  return user;\n}\n```\n\n### Write-Through\nWrite to cache and database simultaneously.\n\n### Write-Behind\nWrite to cache, asynchronously update database.\n\n## Cache Invalidation\n\nThe hardest problem in computer science:\n\n- **Time-based (TTL)** - Simple but may serve stale data\n- **Event-based** - More accurate but complex\n- **Version-based** - Good for immutable data\n\n## Data Structures\n\nRedis offers more than strings:\n\n- **Lists** - For queues\n- **Sets** - For unique collections\n- **Sorted Sets** - For leaderboards\n- **Hashes** - For objects\n\n## Conclusion\n\nEffective caching can dramatically improve performance. Choose the right strategy for your use case."
+}

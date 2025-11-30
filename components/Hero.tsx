@@ -84,6 +84,11 @@ export default function Hero() {
         };
     }, [showIntro]);
 
+    const skipIntro = () => {
+        setShowIntro(false);
+        document.body.style.overflow = "unset";
+    };
+
     const introOverlay = showIntro && mounted ? createPortal(
         <AnimatePresence mode="wait">
             <motion.div
@@ -96,6 +101,18 @@ export default function Hero() {
                 {/* CRT Effects */}
                 <div className="absolute inset-0 pointer-events-none z-10 bg-[linear-gradient(rgba(18,16,16,0)_50%,rgba(0,0,0,0.25)_50%),linear-gradient(90deg,rgba(255,0,0,0.06),rgba(0,255,0,0.02),rgba(0,0,255,0.06))] bg-[length:100%_2px,3px_100%] bg-repeat opacity-20" />
                 <div className="absolute inset-0 pointer-events-none z-20 animate-[flicker_0.15s_infinite] bg-white/5 mix-blend-overlay opacity-5" />
+
+                {/* Skip Button */}
+                <motion.button
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ delay: 1 }}
+                    onClick={skipIntro}
+                    className="absolute bottom-8 right-8 z-50 flex items-center gap-2 px-4 py-2 text-sm text-text-muted hover:text-primary border border-white/10 hover:border-primary/50 rounded-full backdrop-blur-sm bg-bg-surface/50 transition-all duration-300"
+                >
+                    <span>Skip</span>
+                    <ArrowRight className="w-4 h-4" />
+                </motion.button>
 
                 <div className="relative z-30 max-w-4xl w-full bg-bg-surface border border-bg-highlight p-6 rounded-lg shadow-2xl shadow-primary/10">
                     <div className="flex gap-2 mb-4 border-b border-bg-highlight pb-2">

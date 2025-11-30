@@ -1,0 +1,13 @@
+{
+    "id": "docker-kubernetes-basics",
+    "title": "From Docker to Kubernetes: A Developer's Journey",
+    "excerpt": "Understanding containerization and orchestration. A step-by-step guide to deploying your first Kubernetes cluster.",
+    "image": "/blog/kubernetes.jpg",
+    "category": "DevOps",
+    "author": { "name": "James", "avatar": "/avatar.jpg" },
+    "date": "Nov 5, 2024",
+    "readTime": "15 min read",
+    "featured": false,
+    "tags": ["Docker", "Kubernetes", "DevOps", "Containers"],
+    "content": "## Introduction\n\nContainerization has revolutionized how we deploy applications. Let's explore the journey from Docker basics to Kubernetes orchestration.\n\n## Docker Fundamentals\n\nDocker containers package your application with all its dependencies:\n\n```dockerfile\nFROM node:18-alpine\nWORKDIR /app\nCOPY package*.json ./\nRUN npm install\nCOPY . .\nEXPOSE 3000\nCMD [\"npm\", \"start\"]\n```\n\n## Why Kubernetes?\n\nWhen you have many containers, you need orchestration:\n\n- **Automatic scaling**\n- **Self-healing**\n- **Load balancing**\n- **Rolling updates**\n\n## Key Concepts\n\n- **Pods** - Smallest deployable units\n- **Services** - Network abstraction\n- **Deployments** - Declarative updates\n- **ConfigMaps & Secrets** - Configuration management\n\n## Getting Started\n\nUse minikube for local development and learn the basics before moving to production clusters.\n\n## Conclusion\n\nThe container journey is essential for modern development. Start with Docker, master it, then move to Kubernetes."
+}

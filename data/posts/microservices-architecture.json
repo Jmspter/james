@@ -1,0 +1,13 @@
+{
+    "id": "microservices-architecture",
+    "title": "Microservices Architecture: A Practical Guide",
+    "excerpt": "Breaking down monoliths into microservices. When to do it, how to do it right, and common pitfalls to avoid.",
+    "image": "/blog/microservices.jpg",
+    "category": "Architecture",
+    "author": { "name": "James", "avatar": "/avatar.jpg" },
+    "date": "Nov 15, 2024",
+    "readTime": "12 min read",
+    "featured": false,
+    "tags": ["Microservices", "Architecture", "Design Patterns"],
+    "content": "## Introduction\n\nMicroservices architecture has become the go-to pattern for building large-scale applications. But when should you use it, and how do you implement it correctly?\n\n## When to Consider Microservices\n\nNot every application needs microservices. Consider them when:\n\n- Your team is growing and needs autonomous deployment\n- Different parts of your application have different scaling needs\n- You want to use different technologies for different components\n\n## Key Principles\n\n### Single Responsibility\nEach service should do one thing and do it well.\n\n### Loose Coupling\nServices should be independent and communicate through well-defined APIs.\n\n### High Cohesion\nRelated functionality should be grouped together within a service.\n\n## Communication Patterns\n\n### Synchronous (REST/gRPC)\nDirect communication between services. Simple but creates coupling.\n\n### Asynchronous (Message Queues)\nEvent-driven communication using RabbitMQ, Kafka, or similar tools.\n\n## Common Pitfalls\n\n1. **Distributed Monolith** - Microservices that are too tightly coupled\n2. **Data Management** - Sharing databases between services\n3. **Over-engineering** - Creating too many services too early\n\n## Conclusion\n\nMicroservices are powerful but come with complexity. Start with a well-structured monolith and extract services as needed."
+}
