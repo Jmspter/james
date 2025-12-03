@@ -8,7 +8,7 @@ export default function Footer() {
             <div className="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
                 <div className="text-center md:text-left">
                     <h3 className="text-xl font-heading font-medium text-text-main mb-2">
-                        James
+                        James Peter
                     </h3>
                     <p className="text-sm">
                         © {new Date().getFullYear()} All rights reserved.
