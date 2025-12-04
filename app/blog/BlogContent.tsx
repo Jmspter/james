@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { ArrowLeft, ArrowRight, Clock, Search, Tag } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 import type { BlogPost } from "@/lib/blog";
@@ -55,10 +56,10 @@ export default function BlogContent({ posts, categories }: BlogContentProps) {
                     className="mb-12"
                 >
                     <h1 className="text-4xl md:text-6xl font-heading font-bold mb-4">
-                        Technical <span className="text-primary">Blog</span>
+                        James <span className="text-primary">Blog</span>
                     </h1>
                     <p className="text-text-muted text-lg max-w-2xl">
-                        Insights, tutorials, and thoughts on backend development, system architecture, and DevOps practices.
+                       Informações, tutoriais e reflexões sobre desenvolvimento backend, arquitetura de sistemas e práticas de DevOps.
                     </p>
                 </motion.div>
 
@@ -74,8 +75,17 @@ export default function BlogContent({ posts, categories }: BlogContentProps) {
                             <div className="group relative h-[500px] rounded-3xl overflow-hidden cursor-pointer">
                                 {/* Background Image */}
                                 <div className="absolute inset-0">
-                                    <div className="w-full h-full bg-gradient-to-br from-primary/20 via-bg-surface to-secondary/20" />
-                                    <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_50%,_var(--tw-gradient-stops))] from-primary/10 via-transparent to-transparent" />
+                                    {featuredPost.image ? (
+                                        <Image
+                                            src={featuredPost.image}
+                                            alt={featuredPost.title}
+                                            fill
+                                            className="object-cover"
+                                        />
+                                    ) : (
+                                        <div className="w-full h-full bg-gradient-to-br from-primary/20 via-bg-surface to-secondary/20" />
+                                    )}
+                                    <div className="absolute inset-0 bg-gradient-to-t from-bg-main via-bg-main/60 to-transparent" />
                                 </div>
 
                                 {/* Content */}
@@ -99,18 +109,18 @@ export default function BlogContent({ posts, categories }: BlogContentProps) {
                                     </p>
 
                                     <div className="flex items-center gap-6">
-                                        <div className="flex items-center gap-3">
-                                            <div className="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center text-primary font-bold">
-                                                {featuredPost.author.name[0]}
+                                        <div className="flex items-center gap-3 pt-2">
+                                            <Image
+                                                src={featuredPost.author.avatar || "/about-photo.jpg"}
+                                                alt={featuredPost.author.name}
+                                                width={32}
+                                                height={32}
+                                                className="w-8 h-8 rounded-full object-cover border border-white/10"
+                                            />
+                                            <div className="flex items-center gap-2 text-sm text-text-muted">
+                                                <span className="font-medium text-text-main">{featuredPost.author.name}</span>
+                                                <span>{featuredPost.date}</span>
                                             </div>
-                                            <div>
-                                                <p className="text-text-main font-medium">{featuredPost.author.name}</p>
-                                                <p className="text-text-muted text-sm">{featuredPost.date}</p>
-                                            </div>
-                                        </div>
-                                        <div className="flex items-center gap-2 text-text-muted text-sm">
-                                            <Clock className="w-4 h-4" />
-                                            {featuredPost.readTime}
                                         </div>
                                     </div>
 
@@ -169,14 +179,25 @@ export default function BlogContent({ posts, categories }: BlogContentProps) {
                                 <div className="group cursor-pointer">
                                     {/* Image Container */}
                                     <div className="relative h-52 rounded-2xl overflow-hidden mb-5 bg-bg-surface">
-                                        <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-bg-highlight to-secondary/10" />
-                                        <div className="absolute inset-0 flex items-center justify-center">
-                                            <Tag className="w-12 h-12 text-primary/30" />
-                                        </div>
+                                        {post.image ? (
+                                            <Image
+                                                src={post.image}
+                                                alt={post.title}
+                                                fill
+                                                className="object-cover group-hover:scale-105 transition-transform duration-300"
+                                            />
+                                        ) : (
+                                            <>
+                                                <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-bg-highlight to-secondary/10" />
+                                                <div className="absolute inset-0 flex items-center justify-center">
+                                                    <Tag className="w-12 h-12 text-primary/30" />
+                                                </div>
+                                            </>
+                                        )}
                                         <div className="absolute inset-0 bg-bg-main/0 group-hover:bg-bg-main/20 transition-colors duration-300" />
                                         
                                         {/* Category Badge */}
-                                        <div className="absolute top-4 left-4 px-3 py-1 bg-bg-main/80 backdrop-blur-sm rounded-full text-xs font-medium text-primary border border-primary/20">
+                                        <div className="absolute top-4 left-4 px-3 py-1 bg-bg-main/80 backdrop-blur-sm rounded-full text-xs font-medium text-primary border border-primary/20 z-10">
                                             {post.category}
                                         </div>
                                     </div>
@@ -193,9 +214,13 @@ export default function BlogContent({ posts, categories }: BlogContentProps) {
 
                                         {/* Author & Meta */}
                                         <div className="flex items-center gap-3 pt-2">
-                                            <div className="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center text-primary text-sm font-bold">
-                                                {post.author.name[0]}
-                                            </div>
+                                            <Image
+                                                src={post.author.avatar || "/about-photo.jpg"}
+                                                alt={post.author.name}
+                                                width={32}
+                                                height={32}
+                                                className="w-8 h-8 rounded-full object-cover border border-white/10"
+                                            />
                                             <div className="flex items-center gap-2 text-sm text-text-muted">
                                                 <span className="font-medium text-text-main">{post.author.name}</span>
                                                 <span>•</span>
@@ -238,35 +263,6 @@ export default function BlogContent({ posts, categories }: BlogContentProps) {
                     </motion.div>
                 )}
             </div>
-
-            {/* Newsletter CTA */}
-            <section className="border-t border-white/5 bg-bg-surface/50">
-                <div className="max-w-7xl mx-auto px-6 py-20">
-                    <motion.div
-                        initial={{ opacity: 0, y: 30 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        className="text-center"
-                    >
-                        <h2 className="text-3xl md:text-4xl font-heading font-bold mb-4">
-                            Let's get started on something <span className="text-primary">great</span>
-                        </h2>
-                        <p className="text-text-muted mb-8 max-w-md mx-auto">
-                            Subscribe to get notified about new articles and backend development tips.
-                        </p>
-                        <div className="flex flex-col sm:flex-row gap-4 justify-center max-w-md mx-auto">
-                            <input
-                                type="email"
-                                placeholder="Enter your email"
-                                className="flex-1 px-5 py-3 bg-bg-main border border-white/10 rounded-xl text-text-main placeholder:text-text-muted focus:outline-none focus:border-primary/50 transition-colors"
-                            />
-                            <button className="px-6 py-3 bg-primary text-bg-main font-semibold rounded-xl hover:bg-secondary transition-colors">
-                                Subscribe
-                            </button>
-                        </div>
-                    </motion.div>
-                </div>
-            </section>
 
             {/* Footer */}
             <footer className="border-t border-white/5 py-8">

@@ -5,7 +5,7 @@ image: "/blog/anthropic-bun.jpg"
 category: "Mercado e Tecnologia"
 author:
   name: "James"
-  avatar: "/avatar.jpg"
+  avatar: "/about-photo.jpg"
 date: "03 Dez 2025"
 readTime: "12 min read"
 featured: false

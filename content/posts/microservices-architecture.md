@@ -5,7 +5,7 @@ image: "/blog/microservices.jpg"
 category: "Arquitetura de Software"
 author:
   name: "James"
-  avatar: "/images/avatar.jpg"
+  avatar: "/about-photo.jpg"
 date: "15 de Novembro de 2024"
 readTime: "12 min de leitura"
 featured: false

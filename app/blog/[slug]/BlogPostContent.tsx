@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { ArrowLeft, Clock, Calendar, Tag, Share2, BookmarkPlus, Twitter, Linkedin, Link2, ChevronRight } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 import type { BlogPost } from "@/lib/blog";
@@ -98,9 +99,13 @@ export default function BlogPostContent({ post, relatedPosts }: BlogPostContentP
 
                     {/* Author */}
                     <div className="flex items-center gap-4 pb-8 border-b border-white/10">
-                        <div className="w-14 h-14 rounded-full bg-primary/20 flex items-center justify-center text-primary text-xl font-bold">
-                            {post.author.name[0]}
-                        </div>
+                        <Image
+                            src={post.author.avatar || "/about-photo.jpg"}
+                            alt={post.author.name}
+                            width={56}
+                            height={56}
+                            className="w-14 h-14 rounded-full object-cover border border-white/10"
+                        />
                         <div>
                             <p className="font-semibold text-text-main">{post.author.name}</p>
                             <p className="text-sm text-text-muted">{defaultAuthorBio}</p>

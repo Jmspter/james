@@ -5,7 +5,7 @@ image: "/blog/kubernetes.jpg"
 category: "DevOps"
 author:
   name: "James"
-  avatar: "/images/avatar.jpg"
+  avatar: "/about-photo.jpg"
 date: "05 de Novembro de 2024"
 readTime: "15 min de leitura"
 featured: false

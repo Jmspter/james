@@ -5,7 +5,7 @@ image: "/blog/bun-scaling.jpg"
 category: "Backend"
 author:
   name: "James"
-  avatar: "/images/avatar.jpg"
+  avatar: "/about-photo.jpg"
 date: "20 de Novembro de 2024"
 readTime: "8 min de leitura"
 featured: false
