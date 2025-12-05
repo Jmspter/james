@@ -26,10 +26,9 @@ const projects: Project[] = [
         id: 1,
         title: "Demanda Urbanas",
         category: "Web Application",
-        image: "/project1.jpg",
+        image: "/project1.svg",
         tags: ["Ruby on rails", "PostgreSQL", "Redis", "Sidekiq"],
-        link: "https://demandaurbanas.com",
-        github: "https://github.com/example/demanda-urbanas",
+        link: "https://dashboard.demandaurbana.com.br/",
         description: "Plataforma de gestão de demandas urbanas para prefeituras.",
         longDescription: "Sistema completo de gestão de demandas urbanas que permite aos cidadãos reportar problemas na cidade e acompanhar a resolução em tempo real. A plataforma inclui painéis administrativos, sistema de priorização automática e integração com equipes de campo.",
         features: [
@@ -51,9 +50,9 @@ const projects: Project[] = [
         id: 2,
         title: "Base GPT",
         category: "AI",
-        image: "/project2.jpg",
+        image: "/project2.svg",
         tags: ["Nest.js", "OpenAI", "PostgreSQL"],
-        link: "https://basegpt.io",
+        link: "https://basegpt.com.br/",
         description: "Plataforma de IA conversacional para empresas.",
         longDescription: "Solução enterprise de IA conversacional que permite empresas criarem assistentes virtuais personalizados treinados com seus próprios dados. Inclui sistema de RAG (Retrieval-Augmented Generation), fine-tuning de modelos e analytics avançado.",
         features: [
@@ -73,12 +72,11 @@ const projects: Project[] = [
     },
     {
         id: 3,
-        title: "Auth Provider Service",
+        title: "Red Dune Auth",
         category: "Security",
         image: "/project3.jpg",
         tags: ["Node.js", "OAuth2", "JWT", "MongoDB"],
         link: "#",
-        github: "https://github.com/example/auth-provider",
         description: "Serviço de autenticação centralizado e seguro.",
         longDescription: "Microserviço de autenticação robusto que implementa OAuth2, OpenID Connect e SAML. Projetado para alta disponibilidade e segurança, com suporte a MFA, rate limiting e detecção de fraudes em tempo real.",
         features: [
@@ -390,12 +388,16 @@ export default function Projects() {
                                             </h3>
                                         </div>
                                         <div className="flex gap-2">
-                                            <button className="p-2 bg-bg-main text-text-main rounded-full hover:bg-primary hover:text-bg-main transition-colors">
-                                                <Github className="w-4 h-4" />
-                                            </button>
-                                            <button className="p-2 bg-bg-main text-text-main rounded-full hover:bg-primary hover:text-bg-main transition-colors">
-                                                <Globe className="w-4 h-4" />
-                                            </button>
+                                            {project.github && (
+                                                <button className="p-2 bg-bg-main text-text-main rounded-full hover:bg-primary hover:text-bg-main transition-colors">
+                                                    <Github className="w-4 h-4" />
+                                                </button>
+                                            )}
+                                            {project.link && project.link !== "#" && (
+                                                <button className="p-2 bg-bg-main text-text-main rounded-full hover:bg-primary hover:text-bg-main transition-colors">
+                                                    <Globe className="w-4 h-4" />
+                                                </button>
+                                            )}
                                         </div>
                                     </div>
 
