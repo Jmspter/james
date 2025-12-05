@@ -1,11 +1,11 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ArrowLeft, Clock, Calendar, Tag, Share2, BookmarkPlus, Twitter, Linkedin, Link2, ChevronRight } from "lucide-react";
+import { ArrowLeft, Clock, Calendar, Tag, ChevronRight } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
 import type { BlogPost } from "@/lib/blog";
+import ShareButtons from "@/components/ShareButtons";
 
 interface BlogPostContentProps {
     post: BlogPost;
@@ -15,16 +15,6 @@ interface BlogPostContentProps {
 const defaultAuthorBio = "Backend developer passionate about building scalable systems and sharing knowledge.";
 
 export default function BlogPostContent({ post, relatedPosts }: BlogPostContentProps) {
-    const [copied, setCopied] = useState(false);
-
-    const copyLink = () => {
-        if (typeof window !== "undefined") {
-            navigator.clipboard.writeText(window.location.href);
-            setCopied(true);
-            setTimeout(() => setCopied(false), 2000);
-        }
-    };
-
     return (
         <main className="min-h-screen bg-bg-main text-text-main">
             {/* Header */}
@@ -34,21 +24,7 @@ export default function BlogPostContent({ post, relatedPosts }: BlogPostContentP
                         <ArrowLeft className="w-5 h-5" />
                         <span className="font-medium">Back to Blog</span>
                     </Link>
-                    <div className="flex items-center gap-3">
-                        <button 
-                            onClick={copyLink}
-                            className="p-2 rounded-full bg-bg-surface border border-white/10 text-text-muted hover:text-primary hover:border-primary/50 transition-all"
-                            title="Copy link"
-                        >
-                            {copied ? <span className="text-xs px-1">Copied!</span> : <Link2 className="w-4 h-4" />}
-                        </button>
-                        <button className="p-2 rounded-full bg-bg-surface border border-white/10 text-text-muted hover:text-primary hover:border-primary/50 transition-all">
-                            <BookmarkPlus className="w-4 h-4" />
-                        </button>
-                        <button className="p-2 rounded-full bg-bg-surface border border-white/10 text-text-muted hover:text-primary hover:border-primary/50 transition-all">
-                            <Share2 className="w-4 h-4" />
-                        </button>
-                    </div>
+                    <ShareButtons title={post.title} variant="compact" />
                 </div>
             </header>
 
@@ -167,23 +143,7 @@ export default function BlogPostContent({ post, relatedPosts }: BlogPostContentP
                     className="mt-8 p-6 bg-bg-surface/50 rounded-2xl border border-white/5"
                 >
                     <p className="text-text-muted mb-4">Share this article</p>
-                    <div className="flex items-center gap-3">
-                        <button className="flex items-center gap-2 px-5 py-2.5 bg-[#1DA1F2]/10 border border-[#1DA1F2]/20 rounded-full text-[#1DA1F2] hover:bg-[#1DA1F2]/20 transition-colors">
-                            <Twitter className="w-4 h-4" />
-                            Twitter
-                        </button>
-                        <button className="flex items-center gap-2 px-5 py-2.5 bg-[#0077B5]/10 border border-[#0077B5]/20 rounded-full text-[#0077B5] hover:bg-[#0077B5]/20 transition-colors">
-                            <Linkedin className="w-4 h-4" />
-                            LinkedIn
-                        </button>
-                        <button 
-                            onClick={copyLink}
-                            className="flex items-center gap-2 px-5 py-2.5 bg-bg-surface border border-white/10 rounded-full text-text-muted hover:border-primary/50 hover:text-primary transition-colors"
-                        >
-                            <Link2 className="w-4 h-4" />
-                            {copied ? "Copied!" : "Copy Link"}
-                        </button>
-                    </div>
+                    <ShareButtons title={post.title} />
                 </motion.div>
 
                 {/* Related Posts */}

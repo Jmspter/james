@@ -15,6 +15,7 @@ interface BlogContentProps {
 export default function BlogContent({ posts, categories }: BlogContentProps) {
     const [selectedCategory, setSelectedCategory] = useState("All");
     const [searchQuery, setSearchQuery] = useState("");
+    const [visibleCount, setVisibleCount] = useState(3);
 
     const featuredPost = posts.find((post) => post.featured);
     const filteredPosts = posts.filter((post) => {
@@ -23,6 +24,24 @@ export default function BlogContent({ posts, categories }: BlogContentProps) {
             post.excerpt.toLowerCase().includes(searchQuery.toLowerCase());
         return matchesCategory && matchesSearch && !post.featured;
     });
+
+    const visiblePosts = filteredPosts.slice(0, visibleCount);
+    const hasMorePosts = visibleCount < filteredPosts.length;
+
+    const loadMore = () => {
+        setVisibleCount((prev) => prev + 3);
+    };
+
+    // Reset visible count when filter changes
+    const handleCategoryChange = (category: string) => {
+        setSelectedCategory(category);
+        setVisibleCount(3);
+    };
+
+    const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setSearchQuery(e.target.value);
+        setVisibleCount(3);
+    };
 
     return (
         <main className="min-h-screen bg-bg-main text-text-main">
@@ -40,7 +59,7 @@ export default function BlogContent({ posts, categories }: BlogContentProps) {
                                 type="text"
                                 placeholder="Search articles..."
                                 value={searchQuery}
-                                onChange={(e) => setSearchQuery(e.target.value)}
+                                onChange={handleSearchChange}
                                 className="pl-10 pr-4 py-2 bg-bg-surface border border-white/10 rounded-full text-sm text-text-main placeholder:text-text-muted focus:outline-none focus:border-primary/50 transition-colors w-64"
                             />
                         </div>
@@ -144,7 +163,7 @@ export default function BlogContent({ posts, categories }: BlogContentProps) {
                     {categories.map((category) => (
                         <button
                             key={category}
-                            onClick={() => setSelectedCategory(category)}
+                            onClick={() => handleCategoryChange(category)}
                             className={`px-5 py-2.5 rounded-full text-sm font-medium transition-all duration-300 ${
                                 selectedCategory === category
                                     ? "bg-primary text-bg-main"
@@ -168,7 +187,7 @@ export default function BlogContent({ posts, categories }: BlogContentProps) {
 
                 {/* Blog Grid */}
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    {filteredPosts.map((post, index) => (
+                    {visiblePosts.map((post, index) => (
                         <motion.article
                             key={post.id}
                             initial={{ opacity: 0, y: 30 }}
@@ -250,15 +269,18 @@ export default function BlogContent({ posts, categories }: BlogContentProps) {
                 )}
 
                 {/* Load More Button */}
-                {filteredPosts.length > 0 && (
+                {hasMorePosts && (
                     <motion.div
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         transition={{ delay: 0.5 }}
                         className="flex justify-center mt-12"
                     >
-                        <button className="px-8 py-3 bg-bg-surface border border-white/10 rounded-full text-text-main font-medium hover:border-primary/50 hover:text-primary transition-all duration-300">
-                            Load more
+                        <button 
+                            onClick={loadMore}
+                            className="px-8 py-3 bg-bg-surface border border-white/10 rounded-full text-text-main font-medium hover:border-primary/50 hover:text-primary transition-all duration-300"
+                        >
+                            Load more ({filteredPosts.length - visibleCount} remaining)
                         </button>
                     </motion.div>
                 )}
