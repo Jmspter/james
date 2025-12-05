@@ -58,7 +58,7 @@ export default function Process() {
   return (
     <section ref={targetRef} className="relative h-[300vh] bg-bg-main">
       <div className="sticky top-0 flex h-screen items-center overflow-hidden">
-        <div className="absolute top-10 left-10 z-10">
+        <div className="absolute top-1 left-10 z-10">
           <h2 className="text-4xl md:text-6xl font-heading text-primary mb-4">
             DevOps Cycle
           </h2>

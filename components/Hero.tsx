@@ -96,7 +96,7 @@ export default function Hero() {
                 initial={{ opacity: 1 }}
                 exit={{ opacity: 0, scale: 1.05, filter: "blur(10px)" }}
                 transition={{ duration: 0.8 }}
-                className="fixed inset-0 z-[9999] flex items-center justify-center bg-bg-main font-mono text-primary p-4 md:p-10"
+                className="fixed inset-0 z-[9999] flex items-center justify-center bg-bg-main font-mono text-text-main p-4 md:p-10"
             >
                 {/* CRT Effects */}
                 <div className="absolute inset-0 pointer-events-none z-10 bg-[linear-gradient(rgba(18,16,16,0)_50%,rgba(0,0,0,0.25)_50%),linear-gradient(90deg,rgba(255,0,0,0.06),rgba(0,255,0,0.02),rgba(0,0,255,0.06))] bg-[length:100%_2px,3px_100%] bg-repeat opacity-20" />
@@ -114,18 +114,18 @@ export default function Hero() {
                     <ArrowRight className="w-4 h-4" />
                 </motion.button>
 
-                <div className="relative z-30 max-w-4xl w-full bg-bg-surface border border-bg-highlight p-6 rounded-lg shadow-2xl shadow-primary/10">
+                <div className="relative z-30 max-w-4xl w-full bg-bg-surface border border-bg-highlight p-6 rounded-lg shadow-2xl shadow-white/5">
                     <div className="flex gap-2 mb-4 border-b border-bg-highlight pb-2">
                         <div className="w-3 h-3 rounded-full bg-red-500" />
                         <div className="w-3 h-3 rounded-full bg-yellow-500" />
                         <div className="w-3 h-3 rounded-full bg-green-500" />
                     </div>
-                    <pre className="text-sm md:text-lg whitespace-pre-wrap leading-relaxed font-mono text-primary/90 min-h-[300px]">
+                    <pre className="text-sm md:text-lg whitespace-pre-wrap leading-relaxed font-mono text-text-main min-h-[300px]">
                         {text}
                         <motion.span
                             animate={{ opacity: [0, 1, 0] }}
                             transition={{ repeat: Infinity, duration: 0.8 }}
-                            className="inline-block w-2 h-4 md:w-3 md:h-6 bg-primary ml-1 align-middle"
+                            className="inline-block w-2 h-4 md:w-3 md:h-6 bg-text-main ml-1 align-middle"
                         />
                     </pre>
                 </div>

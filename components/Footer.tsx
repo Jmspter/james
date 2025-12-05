@@ -1,6 +1,8 @@
 "use client";
 
 import { Github, Linkedin, Mail } from "lucide-react";
+import { useState } from "react";
+import LegalModal from "./LegalModal";
 
 // X (Twitter) icon component
 function XIcon({ className }: { className?: string }) {
@@ -23,42 +25,58 @@ const socialLinks = [
 ];
 
 export default function Footer() {
+    const [legalModal, setLegalModal] = useState<"privacy" | "terms" | null>(null);
+
     return (
-        <footer className="bg-bg-main text-text-muted py-12 px-6 border-t border-white/5">
-            <div className="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
-                <div className="text-center md:text-left">
-                    <h3 className="text-xl font-heading font-medium text-text-main mb-2">
-                        James Peter
-                    </h3>
-                    <p className="text-sm">
-                        © {new Date().getFullYear()} All rights reserved.
-                    </p>
-                </div>
+        <>
+            <LegalModal 
+                type={legalModal || "privacy"} 
+                isOpen={legalModal !== null} 
+                onClose={() => setLegalModal(null)} 
+            />
+            
+            <footer className="bg-bg-main text-text-muted py-12 px-6 border-t border-white/5">
+                <div className="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
+                    <div className="text-center md:text-left">
+                        <h3 className="text-xl font-heading font-medium text-text-main mb-2">
+                            James Peter
+                        </h3>
+                        <p className="text-sm">
+                            © {new Date().getFullYear()} All rights reserved.
+                        </p>
+                    </div>
 
-                <div className="flex gap-6">
-                    {socialLinks.map(({ icon: Icon, href, label }) => (
-                        <a
-                            key={label}
-                            href={href}
-                            target={href.startsWith("mailto:") ? undefined : "_blank"}
-                            rel={href.startsWith("mailto:") ? undefined : "noopener noreferrer"}
-                            className="p-2 rounded-full hover:bg-white/5 hover:text-primary transition-all duration-300 hover:shadow-[0_0_15px_rgba(255,122,26,0.3)]"
-                            aria-label={label}
+                    <div className="flex gap-6">
+                        {socialLinks.map(({ icon: Icon, href, label }) => (
+                            <a
+                                key={label}
+                                href={href}
+                                target={href.startsWith("mailto:") ? undefined : "_blank"}
+                                rel={href.startsWith("mailto:") ? undefined : "noopener noreferrer"}
+                                className="p-2 rounded-full hover:bg-white/5 hover:text-primary transition-all duration-300 hover:shadow-[0_0_15px_rgba(255,122,26,0.3)]"
+                                aria-label={label}
+                            >
+                                <Icon className="w-5 h-5" />
+                            </a>
+                        ))}
+                    </div>
+
+                    <div className="flex gap-8 text-sm font-medium">
+                        <button 
+                            onClick={() => setLegalModal("privacy")}
+                            className="hover:text-text-main transition-colors"
                         >
-                            <Icon className="w-5 h-5" />
-                        </a>
-                    ))}
+                            Privacy Policy
+                        </button>
+                        <button 
+                            onClick={() => setLegalModal("terms")}
+                            className="hover:text-text-main transition-colors"
+                        >
+                            Terms of Service
+                        </button>
+                    </div>
                 </div>
-
-                <div className="flex gap-8 text-sm font-medium">
-                    <a href="#" className="hover:text-text-main transition-colors">
-                        Privacy Policy
-                    </a>
-                    <a href="#" className="hover:text-text-main transition-colors">
-                        Terms of Service
-                    </a>
-                </div>
-            </div>
-        </footer>
+            </footer>
+        </>
     );
 }
