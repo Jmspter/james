@@ -27,8 +27,8 @@ Você muda quando percebe que a performance abre caminhos arquiteturais diferent
 
 Um exemplo simples:
 
-👉 *No Node.js, rodar um cold start num microserviço serverless podia levar 120–300 ms.*
-👉 *No Bun, você vê coisas iniciando em 10–40 ms.*
+> *No Node.js, rodar um cold start num microserviço serverless podia levar 120–300 ms.*
+> *No Bun, você vê coisas iniciando em 10–40 ms.*
 
 Isso não é só “mais rápido”.
 Isso **muda o que você pode construir**.
