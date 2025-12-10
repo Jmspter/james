@@ -8,7 +8,7 @@ author:
   avatar: "/about-photo.jpg"
 date: "10 Dez 2025"
 readTime: "12 min read"
-featured: false
+featured: true
 tags:
   - Backend
   - Performance
