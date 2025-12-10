@@ -6,7 +6,7 @@ category: "Segurança"
 author:
   name: "James"
   avatar: "/about-photo.jpg"
-date: "28 Out 2024"
+date: "28 Out 2025"
 readTime: "9 min read"
 featured: true
 tags:
@@ -20,7 +20,7 @@ Se tem uma coisa que sempre me surpreende é como, em 2025, ainda preciso repeti
 
 Pois é. Então vamos organizar a bagunça.
 
-Tudo o que vou explicar aqui não é opinião minha — está em documentos extremamente consolidados como **OWASP API Security Top 10**, as recomendações do **NIST**, RFCs do IETF e livros clássicos sobre arquitetura segura. Mas vou apresentar no tom direto que eu gostaria que alguém tivesse usado comigo 20 anos atrás.
+Tudo o que vou explicar aqui não é opinião minha — está em documentos extremamente consolidados como **OWASP API Security Top 10**, as recomendações do **NIST**, RFCs do IETF e livros clássicos sobre arquitetura segura. Mas vou apresentar no tom direto que eu gostaria que alguém tivesse usado comigo anos atrás.
 
 ---
 

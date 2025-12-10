@@ -6,7 +6,7 @@ category: "DevOps"
 author:
   name: "James"
   avatar: "/about-photo.jpg"
-date: "05 de Novembro de 2024"
+date: "05 de Novembro de 2025"
 readTime: "15 min de leitura"
 featured: false
 tags:

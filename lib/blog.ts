@@ -29,6 +29,50 @@ marked.setOptions({
     breaks: true,
 });
 
+// Parse Portuguese date strings to Date objects
+function parsePortugueseDate(dateStr: string): Date {
+    const months: Record<string, number> = {
+        "jan": 0, "janeiro": 0,
+        "fev": 1, "fevereiro": 1,
+        "mar": 2, "março": 2,
+        "abr": 3, "abril": 3,
+        "mai": 4, "maio": 4,
+        "jun": 5, "junho": 5,
+        "jul": 6, "julho": 6,
+        "ago": 7, "agosto": 7,
+        "set": 8, "setembro": 8,
+        "out": 9, "outubro": 9,
+        "nov": 10, "novembro": 10,
+        "dez": 11, "dezembro": 11,
+    };
+
+    // Remove "de" and normalize
+    const normalized = dateStr.toLowerCase().replace(/\s+de\s+/g, " ").trim();
+    
+    // Try to extract day, month, year
+    const parts = normalized.split(/\s+/);
+    
+    if (parts.length >= 3) {
+        const day = parseInt(parts[0], 10);
+        const monthStr = parts[1].toLowerCase();
+        const year = parseInt(parts[2], 10);
+        
+        const month = months[monthStr];
+        if (!isNaN(day) && month !== undefined && !isNaN(year)) {
+            return new Date(year, month, day);
+        }
+    }
+    
+    // Fallback: try native Date parsing
+    const parsed = new Date(dateStr);
+    if (!isNaN(parsed.getTime())) {
+        return parsed;
+    }
+    
+    // Last resort: return epoch (will sort to end)
+    return new Date(0);
+}
+
 export function getAllPosts(): BlogPost[] {
     const fileNames = fs.readdirSync(postsDirectory);
     
@@ -61,8 +105,8 @@ export function getAllPosts(): BlogPost[] {
 
     // Sort posts by date (newest first)
     return posts.sort((a, b) => {
-        const dateA = new Date(a.date);
-        const dateB = new Date(b.date);
+        const dateA = parsePortugueseDate(a.date);
+        const dateB = parsePortugueseDate(b.date);
         return dateB.getTime() - dateA.getTime();
     });
 }

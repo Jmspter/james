@@ -6,7 +6,7 @@ category: "Backend"
 author:
   name: "James"
   avatar: "/about-photo.jpg"
-date: "20 de Novembro de 2024"
+date: "20 de Agosto de 2025"
 readTime: "8 min de leitura"
 featured: false
 tags:
