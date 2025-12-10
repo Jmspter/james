@@ -1,5 +1,5 @@
 ---
-title: "Boas Práticas de Segurança para APIs em 2024"
+title: "Segurança de APIs: o básico que todo mundo deveria saber (mas não sabe)"
 excerpt: "Protegendo APIs contra vulnerabilidades comuns. OAuth2, JWT, rate limiting e padrões modernos de segurança aplicados."
 image: "/blog/api-security.jpg"
 category: "Segurança"
@@ -16,31 +16,48 @@ tags:
   - JWT
 ---
 
-## Introdução
+Se tem uma coisa que sempre me surpreende é como, em 2025, ainda preciso repetir conceitos fundamentais de segurança de APIs. A gente vive num mundo onde microserviços conversam com outros microserviços, que falam com gateways externos, que acionam filas, que chamam funções serverless espalhadas em cinco provedores. E, mesmo assim, ainda tem desenvolvedor enviando token JWT pelo `localStorage` ou expondo endpoint de login sem rate limit.
 
-A segurança de APIs desempenha papel essencial em arquiteturas modernas. À medida que sistemas dependem cada vez mais de serviços distribuídos, proteger interfaces de comunicação torna-se um requisito crítico para garantir confidencialidade, integridade e disponibilidade dos dados. Padrões como OAuth2, OpenID Connect, JWT, TLS 1.3 e técnicas de mitigação de abuso são amplamente discutidos em pesquisas e documentações consagradas, como as diretrizes do OWASP API Security Project (2023) e da Cloud Security Alliance.
+Pois é. Então vamos organizar a bagunça.
 
-## Autenticação vs Autorização
+Tudo o que vou explicar aqui não é opinião minha — está em documentos extremamente consolidados como **OWASP API Security Top 10**, as recomendações do **NIST**, RFCs do IETF e livros clássicos sobre arquitetura segura. Mas vou apresentar no tom direto que eu gostaria que alguém tivesse usado comigo 20 anos atrás.
 
-| Conceito | Pergunta Fundamental | Exemplo |
-|----------|----------------------|---------|
-| **Autenticação** | Quem é você? | Login com nome de usuário e senha |
-| **Autorização** | O que você pode fazer? | Permissão para acessar um recurso restrito |
+---
 
-A autenticação confirma a identidade de um agente; a autorização determina o conjunto de ações permitidas. São processos complementares, mas distintos, e devem ser aplicados de maneira independente.
+## Autenticação vs Autorização: o arroz com feijão que muita gente confunde
 
-## OAuth2 e OpenID Connect
+Toda vez que alguém diz “minha API usa JWT então está segura”, eu já sei que tem problema. Antes de falar de token, vamos recapitular dois conceitos que deveriam vir tatuados na tela do VSCode:
 
-OAuth2 consolidou-se como o padrão de mercado para delegação de acesso, enquanto o OpenID Connect adiciona uma camada de identidade estruturada. Ambos são amplamente documentados pelo IETF (RFC 6749, RFC 8252 e OpenID Foundation).
+| Termo            | Pergunta               | O que significa na prática  |
+| ---------------- | ---------------------- | --------------------------- |
+| **Autenticação** | Quem é você?           | Login, senha, PKCE, SSO     |
+| **Autorização**  | O que você pode fazer? | Permissões, escopos, papéis |
 
-Fluxos recomendados:
+Autenticação identifica.
+Autorização limita.
 
-- **Authorization Code**: aplicações web tradicionais com backend seguro  
-- **PKCE (Proof Key for Code Exchange)**: aplicações móveis e SPAs  
-- **Client Credentials**: comunicação entre serviços (machine-to-machine)  
-- **Uso de escopos**: restringir privilégios de cada token emitido  
+Um não substitui o outro. Muita API desastrosa nasce justamente da confusão entre esses dois mundos.
 
-## Exemplo em Ruby: geração básica de JWT
+---
+
+## OAuth2 e OpenID Connect: a dupla que virou padrão de mercado
+
+OAuth2 não é exatamente simples — e não foi feito pra ser. Ele nasceu para resolver problemas de delegação de acesso entre serviços, quando ninguém queria entregar login e senha pra terceiros. Em cima disso, veio o **OpenID Connect**, que adicionou o elemento que faltava: identidade estruturada, assinada, validada.
+
+É daqui que vem os fluxos que vemos por aí:
+
+* **Authorization Code**: o fluxo clássico para backends que sabem guardar segredo.
+* **PKCE**: a versão moderna e segura para SPAs e apps mobile.
+* **Client Credentials**: microserviço falando com microserviço — sem usuários humanos por perto.
+* **Escopos bem definidos**: o equivalente a não dar a chave mestra da empresa só pra quem quer usar a impressora.
+
+Se você hoje está construindo uma API pública e não está usando OAuth2/ OIDC, provavelmente está reinventando uma roda que já veio redonda há mais de 10 anos.
+
+---
+
+## JWT em Ruby: simples, direto e sem firulas
+
+Nada mais básico que gerar um JWT. Mas, como sempre, o diabo mora nos detalhes.
 
 ```ruby
 require 'jwt'
@@ -57,23 +74,32 @@ token = JWT.encode(payload, secret_key, 'HS256')
 puts token
 ```
 
-## Boas Práticas para JWT
+Até aqui tudo parece tranquilo. Mas o problema não é gerar o token — é **como** você trata ele depois.
 
-- Utilizar período curto de expiração (15–30 minutos)
-- Implementar rotação de refresh tokens
-- Validar todas as claims, incluindo `exp`, `iss` e `aud`
-- Preferir assinaturas assimétricas (RS256)
-- Evitar armazenamento inseguro em navegadores (por exemplo, `localStorage`)
-- Revogar tokens comprometidos ou suspeitos
-- Aplicar TLS obrigatoriamente no transporte
+---
 
-Essas diretrizes estão alinhadas com OWASP API Security Top 10 (2023) e NIST Recommendations for Token-Based Authentication.
+## Boas práticas de JWT que não deveriam ser opcionais
 
-## Limitação de Taxa (Rate Limiting)
+Aqui vai o checklist que separa APIs profissionais de experimentos perigosos:
 
-A limitação de taxa é fundamental para mitigar ataques de força bruta, scraping e tentativas de negação de serviço. Implementações robustas podem ser realizadas com Redis, gateways de API e middlewares especializados.
+* JWT com vida curta. **15 minutos** é o sweet spot.
+* Refresh tokens rotativos. Sempre.
+* Tokens sempre assinados com chave assimétrica (RS256).
+* Verificar **todas** as claims. Nada de confiar só no `sub`.
+* **Nunca**, em hipótese alguma, guardar token sensível em `localStorage`.
+* TLS obrigatório — token sem HTTPS é carta aberta pra roubo.
+* Revogação ativa. Se houve vazamento, mate o token sem dó.
 
-### Exemplo em Ruby usando Rack::Attack
+Tudo isso está literalmente descrito no OWASP API Security Top 10 (2023). E ainda assim, todo ano vemos incidentes causados por práticas ruins com tokens.
+
+---
+
+## Rate Limiting: ou você coloca, ou alguém coloca pra você
+
+Toda API exposta ao mundo precisa ser capaz de dizer “calma, respira”.
+Se você não faz isso, alguém vai te derrubar com 3 linhas de curl.
+
+O jeito tradicional é usar Redis, gateways, proxies. Mas se você está num projeto Ruby usando Rack, o **Rack::Attack** já salva a sua vida:
 
 ```ruby
 # config/initializers/rack_attack.rb
@@ -89,46 +115,73 @@ class Rack::Attack
 end
 ```
 
-## Validação de Entrada
+Isso aqui evita desde brute force até clientes mal comportados.
 
-A ausência de validação adequada é uma das causas mais comuns de vulnerabilidades, conforme relatado por OWASP. É imprescindível validar *todos* os dados recebidos pela API.
+---
 
-Recomendações essenciais:
+## Validação de Entrada: a causa número 1 de problemas (desde sempre)
 
-- Validar dados conforme tipo, formato e tamanho
-- Utilizar consultas SQL parametrizadas
-- Sanitizar saídas de acordo com o contexto (HTML, JSON, logs)
-- Rejeitar entradas inesperadas, como campos adicionais não permitidos
+Se existe um pecado capital em APIs, é confiar no input.
 
-### Exemplo em Ruby (consulta segura)
+OWASP repete isso há mais de uma década e, mesmo assim, tem aplicação séria que não valida nem o tamanho dos campos.
+
+As regras básicas:
+
+* Validar tudo: tipo, formato, tamanho, range.
+* Nunca concatenar SQL — use sempre consultas parametrizadas.
+* Sanitizar saídas dependendo do contexto (HTML ≠ JSON ≠ logs).
+* Rejeitar campos extras. Payloads devem ser sempre estritamente definidos.
+
+Exemplo:
 
 ```ruby
-User.where(email: params[:email]) # ActiveRecord aplica parametrização
+User.where(email: params[:email]) # ActiveRecord já faz o escape pra você
 ```
 
-Nunca interpolar entrada do usuário diretamente em consultas SQL.
+Mas se você escrever:
 
-## Transporte Seguro (HTTPS / TLS)
+```ruby
+User.where("email = '#{params[:email]}'")
+```
 
-Toda comunicação deve ocorrer via TLS 1.2+ (idealmente 1.3). Isso protege a API contra interceptação, adulteração de tráfego e outras ameaças de rede. Certificados devem ser gerenciados com boas práticas de renovação automática e uso de HSTS (HTTP Strict Transport Security).
+Você acabou de abrir um portal direto pro inferno.
 
-## Checklist de Segurança
+---
+
+## TLS e Transporte Seguro: nada menos que obrigatório
+
+Hoje, API sem TLS 1.3 é igual fechar a porta da frente e deixar a janela aberta.
+HTTPS não é opcional. Certificado expirado não é aceitável.
+
+Ative HSTS. Renove certificados automaticamente. E monitore.
+
+---
+
+## Checklist final (pra ninguém dizer que esqueceu)
 
 ```text
-[ ] HTTPS (TLS) configurado
-[ ] Autenticação robusta (OAuth2/OIDC)
-[ ] Tokens JWT com expiração curta e assinaturas fortes
-[ ] Rate limiting e detecção de abuso
-[ ] Validação completa de entradas
-[ ] Consultas SQL totalmente parametrizadas
-[ ] Sanitização de saídas
-[ ] CORS configurado adequadamente
+[ ] HTTPS/TLS ativo e configurado
+[ ] Autenticação sólida (OAuth2/OIDC)
+[ ] JWT com expiração curta e assinatura forte
+[ ] Refresh tokens rotativos
+[ ] Rate limiting funcional
+[ ] Validação de entrada obrigatória
+[ ] Consultas SQL parametrizadas
+[ ] Sanitização de respostas
+[ ] CORS configurado
 [ ] Segurança de cabeçalhos (CSP, HSTS, X-Frame-Options)
-[ ] Logs e auditoria ativos
-[ ] Monitoramento de anomalias em tempo real
-[ ] Dependências atualizadas
+[ ] Logs e auditoria em tempo real
+[ ] Dependências sempre atualizadas
 ```
+
+---
 
 ## Conclusão
 
-A construção de APIs seguras exige planejamento, implementação cuidadosa e observância de padrões amplamente aceitos pela comunidade técnica. A adoção consistente das práticas aqui descritas, aliada ao monitoramento contínuo, reduz significativamente a superfície de ataque e contribui para a resiliência do sistema. Segurança não é um complemento, mas um elemento estrutural de qualquer arquitetura moderna.
+Segurança de API não é recurso extra, não é add-on, não é plugin.
+É arquitetura.
+
+E arquitetura ruim não se conserta colocando um JWT e um proxy na frente.
+Ela nasce segura — ou nasce com problemas.
+
+Seguir essas práticas não vai “blindar” sua aplicação, mas vai te colocar muito acima da média. E, honestamente, em 2025, isso já deveria ser padrão, não diferencial.

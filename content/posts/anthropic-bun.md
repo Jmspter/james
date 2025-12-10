@@ -1,5 +1,5 @@
 ---
-title: "Aquisição da Bun pela Anthropic e o Marco de US$ 1 Bilhão do Claude Code"
+title: "Aquisição da Bun pela Anthropic e o Efeito Claude Code: O Futuro da Engenharia Já Chegou, e Não Estamos Preparados"
 excerpt: "Uma avaliação técnica e estratégica da aquisição da Bun pela Anthropic e do rápido crescimento do Claude Code, considerando implicações para infraestrutura, mercado de IA e ecossistema JavaScript."
 image: "/blog/anthropic-bun.jpg"
 category: "Mercado e Tecnologia"
@@ -15,13 +15,13 @@ tags:
   - Architecture
 ---
 
-# Aquisição da Bun pela Anthropic e o Efeito Claude Code: O Futuro da Engenharia Já Chegou, e Não Estamos Preparados
-
 Existe um padrão curioso na indústria tech: toda década alguém decide “reescrever a computação”. Às vezes dá certo (Docker, Kubernetes, V8). Às vezes vira um cemitério de boas intenções (Node core modules, lembram?). Agora, em 2025, isso ganhou um upgrade: não é mais só sobre ferramentas — é sobre **reconstruir a infraestrutura que vai servir de esqueleto para agentes de IA autônoma**.
 
 E o anúncio da Anthropic no dia 3 de dezembro é exatamente isso:
-**Bun foi adquirido. Claude Code bateu US$ 1 bilhão de run-rate em seis meses.**
-E não, isso não é apenas “mais um M&A”. É uma mudança de placa tectônica.
+
+> Bun foi adquirido. Claude Code bateu US$ 1 bilhão de run-rate em seis meses.
+
+E não, isso não é apenas "mais um M&A". É uma mudança de placa tectônica.
 
 ---
 
@@ -31,7 +31,7 @@ Claude Code começou como uma ferramenta interna. Um “assistente de engenharia
 
 Mas alguém lá dentro fez a pergunta inevitável:
 
-**“E se soltarmos isso pro mundo?”**
+> "E se soltarmos isso pro mundo?"
 
 O resto é história:
 
@@ -50,9 +50,7 @@ Claude Code não é só um autocomplete glorificado. Ele faz:
 * manutenção repetitiva sem reclamar (algo que dev nenhum quer fazer);
 * integração com ambientes de produção.
 
-A parte mais impressionante?
-
-**US$ 1 bilhão por ano em seis meses.**
+A parte mais impressionante? **US$ 1 bilhão por ano em seis meses.**
 
 Hoje, isso só é comparável ao boom inicial do GitHub Copilot e ao lançamento do ChatGPT Enterprise. Ou seja: o mercado gritou bem alto que está pronto para deixar máquinas fazerem as partes chatas do nosso trabalho.
 
@@ -78,10 +76,7 @@ Resultado:
 * 7 milhões de downloads por mês
 * usado em empresas como Midjourney e Lovable, onde **latência milimétrica vale dinheiro real**
 
-E aí vem o detalhe que pouca gente percebeu:
-
-**A Anthropic já usava Bun antes da aquisição.**
-Muito. Em produção. Para pipelines críticos.
+E aí vem o detalhe que pouca gente percebeu: a Anthropic já usava Bun antes da aquisição. Muito. Em produção. Para pipelines críticos.
 
 Quando uma empresa de IA multibilionária passa a depender de um runtime JS mantido por um time minúsculo, você já sabe o que acontece a seguir:
 
@@ -171,8 +166,7 @@ Num mundo em que servidores executam milhões de tarefas de engenharia por dia, 
 
 ### 4. O mercado de runtimes agora é sobre IA
 
-A corrida não é mais Node vs Deno vs Bun.
-É **quem consegue servir agentes mais rápido**.
+A corrida não é mais Node vs Deno vs Bun. É **quem consegue servir agentes mais rápido**.
 
 ---
 
