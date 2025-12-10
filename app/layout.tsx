@@ -72,7 +72,7 @@ export const metadata: Metadata = {
     siteName: "James Peter",
     images: [
       {
-        url: "/about-photo.jpg",
+        url: "https://jamespeter.dev/about-photo.jpg",
         width: 1200,
         height: 630,
         alt: "James Peter - Desenvolvedor Backend",
@@ -85,7 +85,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "James Peter | Desenvolvedor Backend & Full-Stack",
     description: "Desenvolvedor Backend especializado em arquitetura de sistemas, APIs escaláveis e práticas DevOps.",
-    images: ["/about-photo.jpg"],
+    images: ["https://jamespeter.dev/about-photo.jpg"],
     creator: "@jmspter",
   },
   verification: {

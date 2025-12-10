@@ -5,7 +5,7 @@ import { ArrowUpRight, Github, Globe } from "lucide-react";
 import Link from "next/link";
 import { useState } from "react";
 import ProjectModal, { type Project } from "@/components/ProjectModal";
-import { projects } from "@/data/projects";
+import { projects } from "@/content/projects/projects";
 
 export default function Projects() {
     const [selectedProject, setSelectedProject] = useState<Project | null>(null);

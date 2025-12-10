@@ -24,6 +24,10 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
         };
     }
     
+    const imageUrl = post.image.startsWith("http") 
+        ? post.image 
+        : `https://jamespeter.dev${post.image}`;
+    
     return {
         title: post.title,
         description: post.excerpt,
@@ -39,7 +43,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
             siteName: "James Peter",
             images: [
                 {
-                    url: post.image,
+                    url: imageUrl,
                     width: 1200,
                     height: 630,
                     alt: post.title,
@@ -55,7 +59,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
             card: "summary_large_image",
             title: post.title,
             description: post.excerpt,
-            images: [post.image],
+            images: [imageUrl],
             creator: "@jmspter",
         },
     };

@@ -5,7 +5,7 @@ import { ArrowLeft, ArrowUpRight, Github, Globe, Search, Filter } from "lucide-r
 import Link from "next/link";
 import { useState } from "react";
 import ProjectModal, { type Project } from "@/components/ProjectModal";
-import { projects, categories } from "@/data/projects";
+import { projects, categories } from "@/content/projects/projects";
 
 export default function ProjectsPage() {
     const [selectedProject, setSelectedProject] = useState<Project | null>(null);

@@ -258,7 +258,7 @@ Hoje os dois modelos coexistem — e aí nasce a confusão.
 
 ### Mas afinal… qual é melhor?
 
-**A resposta honesta — e a sua opinião, que também é a minha:**
+**A resposta honesta — e a minha opinião:**
 
 Depende do tipo de profissional que você quer se tornar e de como você deseja trabalhar.
 

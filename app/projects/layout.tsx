@@ -21,7 +21,7 @@ export const metadata: Metadata = {
         siteName: "James Peter",
         images: [
             {
-                url: "/about-photo.jpg",
+                url: "https://jamespeter.dev/about-photo.jpg",
                 width: 1200,
                 height: 630,
                 alt: "James Peter - Projetos",
@@ -34,7 +34,7 @@ export const metadata: Metadata = {
         card: "summary_large_image",
         title: "Projetos | James Peter",
         description: "Explore meu portfólio de projetos em desenvolvimento backend, arquitetura de sistemas e aplicações full-stack.",
-        images: ["/about-photo.jpg"],
+        images: ["https://jamespeter.dev/about-photo.jpg"],
         creator: "@jmspter",
     },
 };
