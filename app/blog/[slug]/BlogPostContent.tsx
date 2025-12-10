@@ -35,7 +35,7 @@ export default function BlogPostContent({ post, relatedPosts }: BlogPostContentP
                     <ChevronRight className="w-4 h-4" />
                     <Link href="/blog" className="hover:text-primary transition-colors">Blog</Link>
                     <ChevronRight className="w-4 h-4" />
-                    <span className="text-text-main">{post.category}</span>
+                    <span className="text-text-main">{post.title}</span>
                 </nav>
             </div>
 
