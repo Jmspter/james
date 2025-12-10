@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, AnimatePresence } from "framer-motion";
-import { ArrowLeft, ArrowRight, ChevronLeft, ChevronRight, Clock, Search, Tag } from "lucide-react";
+import { ArrowLeft, ArrowRight, Clock, Search, Tag } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { useState, useEffect, useCallback } from "react";
@@ -39,12 +39,6 @@ export default function BlogContent({ posts, categories }: BlogContentProps) {
         );
     }, [featuredPosts.length]);
 
-    const prevFeatured = useCallback(() => {
-        setCurrentFeaturedIndex((prev) => 
-            prev === 0 ? featuredPosts.length - 1 : prev - 1
-        );
-    }, [featuredPosts.length]);
-
     // Auto-rotate every 5 seconds
     useEffect(() => {
         if (featuredPosts.length <= 1) return;
@@ -72,7 +66,7 @@ export default function BlogContent({ posts, categories }: BlogContentProps) {
         <main className="min-h-screen bg-bg-main text-text-main">
             {/* Header */}
             <header className="sticky top-0 z-50 bg-bg-main/80 backdrop-blur-xl border-b border-white/5">
-                <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+                <div className="max-w-6xl mx-auto px-8 md:px-12 lg:px-16 py-5 flex items-center justify-between">
                     <Link href="/" className="flex items-center gap-2 text-text-main hover:text-primary transition-colors">
                         <ArrowLeft className="w-5 h-5" />
                         <span className="font-medium">Back to Portfolio</span>
@@ -92,7 +86,7 @@ export default function BlogContent({ posts, categories }: BlogContentProps) {
                 </div>
             </header>
 
-            <div className="max-w-7xl mx-auto px-6 py-12">
+            <div className="max-w-6xl mx-auto px-8 md:px-12 lg:px-16 py-16">
                 {/* Page Title */}
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
@@ -189,36 +183,19 @@ export default function BlogContent({ posts, categories }: BlogContentProps) {
 
                             {/* Carousel Navigation - Only show if more than 1 featured */}
                             {featuredPosts.length > 1 && (
-                                <>
-                                    {/* Navigation Arrows */}
-                                    <button
-                                        onClick={(e) => { e.preventDefault(); prevFeatured(); }}
-                                        className="absolute left-4 top-1/2 -translate-y-1/2 z-10 w-12 h-12 rounded-full bg-bg-main/80 backdrop-blur-sm border border-white/10 flex items-center justify-center hover:bg-primary hover:border-primary transition-all duration-300 group"
-                                    >
-                                        <ChevronLeft className="w-6 h-6 text-text-main group-hover:text-bg-main" />
-                                    </button>
-                                    <button
-                                        onClick={(e) => { e.preventDefault(); nextFeatured(); }}
-                                        className="absolute right-24 md:right-32 top-1/2 -translate-y-1/2 z-10 w-12 h-12 rounded-full bg-bg-main/80 backdrop-blur-sm border border-white/10 flex items-center justify-center hover:bg-primary hover:border-primary transition-all duration-300 group"
-                                    >
-                                        <ChevronRight className="w-6 h-6 text-text-main group-hover:text-bg-main" />
-                                    </button>
-
-                                    {/* Dots Indicator */}
-                                    <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex items-center gap-2 z-10">
-                                        {featuredPosts.map((_, index) => (
-                                            <button
-                                                key={index}
-                                                onClick={(e) => { e.preventDefault(); setCurrentFeaturedIndex(index); }}
-                                                className={`h-2 rounded-full transition-all duration-300 ${
-                                                    index === currentFeaturedIndex 
-                                                        ? "w-8 bg-primary" 
-                                                        : "w-2 bg-white/30 hover:bg-white/50"
-                                                }`}
-                                            />
-                                        ))}
-                                    </div>
-                                </>
+                                <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex items-center gap-2 z-10">
+                                    {featuredPosts.map((_, index) => (
+                                        <button
+                                            key={index}
+                                            onClick={(e) => { e.preventDefault(); setCurrentFeaturedIndex(index); }}
+                                            className={`h-2 rounded-full transition-all duration-300 ${
+                                                index === currentFeaturedIndex 
+                                                    ? "w-8 bg-primary" 
+                                                    : "w-2 bg-white/30 hover:bg-white/50"
+                                            }`}
+                                        />
+                                    ))}
+                                </div>
                             )}
                         </div>
                     </motion.div>
@@ -358,8 +335,8 @@ export default function BlogContent({ posts, categories }: BlogContentProps) {
             </div>
 
             {/* Footer */}
-            <footer className="border-t border-white/5 py-8">
-                <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-4">
+            <footer className="border-t border-white/5 py-10 mt-8">
+                <div className="max-w-6xl mx-auto px-8 md:px-12 lg:px-16 flex flex-col md:flex-row items-center justify-between gap-4">
                     <p className="text-text-muted text-sm">
                         © 2024 James. All rights reserved.
                     </p>
