@@ -18,7 +18,7 @@ tags:
 
 ## 1. Introdução
 
-A ascensão do Bun foi quase um “efeito domino” no ecossistema JavaScript. Por mais que o Node.js tenha sido um titã que moldou uma década de backends modernos, ele é fruto de uma época em que “escalar significa colocar um Nginx na frente e torcer”. O Bun nasce em outra era — com expectativas muito mais altas e usuários que já entenderam o custo da lentidão.
+A ascensão do Bun foi quase um "efeito domino" no ecossistema JavaScript. Por mais que o Node.js tenha sido um titã que moldou uma década de backends modernos, ele é fruto de uma época em que "escalar significa colocar um Nginx na frente e torcer". O Bun nasce em outra era, com expectativas muito mais altas e usuários que já entenderam o custo da lentidão.
 
 E, olha, muita gente acha que Bun “é só mais rápido”.
 Mas vamos ser honestos: **ninguém muda uma arquitetura inteira só por velocidade**.
@@ -27,10 +27,10 @@ Você muda quando percebe que a performance abre caminhos arquiteturais diferent
 
 Um exemplo simples:
 
-> *No Node.js, rodar um cold start num microserviço serverless podia levar 120–300 ms.*
-> *No Bun, você vê coisas iniciando em 10–40 ms.*
+> *No Node.js, rodar um cold start num microserviço serverless podia levar 120 a 300 ms.*
+> *No Bun, você vê coisas iniciando em 10 a 40 m2s.*
 
-Isso não é só “mais rápido”.
+Isso não é só "mais rápido".
 Isso **muda o que você pode construir**.
 
 ---

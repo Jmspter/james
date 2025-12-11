@@ -39,6 +39,24 @@ export default function BlogContent({ posts, categories }: BlogContentProps) {
         );
     }, [featuredPosts.length]);
 
+    const prevFeatured = useCallback(() => {
+        setCurrentFeaturedIndex((prev) => 
+            prev === 0 ? featuredPosts.length - 1 : prev - 1
+        );
+    }, [featuredPosts.length]);
+
+    // Handle swipe/drag
+    const handleDragEnd = useCallback((event: MouseEvent | TouchEvent | PointerEvent, info: { offset: { x: number }; velocity: { x: number } }) => {
+        const swipeThreshold = 50;
+        const velocityThreshold = 500;
+        
+        if (info.offset.x < -swipeThreshold || info.velocity.x < -velocityThreshold) {
+            nextFeatured();
+        } else if (info.offset.x > swipeThreshold || info.velocity.x > velocityThreshold) {
+            prevFeatured();
+        }
+    }, [nextFeatured, prevFeatured]);
+
     // Auto-rotate every 5 seconds
     useEffect(() => {
         if (featuredPosts.length <= 1) return;
@@ -119,7 +137,11 @@ export default function BlogContent({ posts, categories }: BlogContentProps) {
                                             animate={{ opacity: 1, x: 0 }}
                                             exit={{ opacity: 0, x: -100 }}
                                             transition={{ duration: 0.5, ease: "easeInOut" }}
-                                            className="absolute inset-0"
+                                            drag={featuredPosts.length > 1 ? "x" : false}
+                                            dragConstraints={{ left: 0, right: 0 }}
+                                            dragElastic={0.2}
+                                            onDragEnd={handleDragEnd}
+                                            className="absolute inset-0 cursor-grab active:cursor-grabbing"
                                         >
                                             <Link href={`/blog/${featuredPost.id}`}>
                                                 <div className="group relative h-full cursor-pointer">

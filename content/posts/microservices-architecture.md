@@ -11,14 +11,14 @@ readTime: "12 min de leitura"
 featured: false
 tags:
   - Microsserviços
-  - Arquitetura de Software
+  - Architecture
   - Padrões de Projeto
 ---
 
-Se você acompanha o hype da indústria, já deve ter percebido que microsserviços viraram quase um mantra. Tem empresa que ainda nem resolveu os problemas básicos do monólito e já quer sair quebrando tudo em 27 serviços independentes rodando em clusters distribuídos com CI/CD full-automático. Spoiler: isso costuma dar errado.
+Se você acompanha o hype da indústria, já deve ter percebido que microserviços viraram quase um mantra. Tem empresa que ainda nem resolveu os problemas básicos do monólito e já quer sair quebrando tudo em 27 serviços independentes rodando em clusters distribuídos com CI/CD full-automático. Spoiler: isso costuma dar errado.
 
-A verdade é que **microsserviços não são sobre tecnologia. São sobre organização.**
-E, historicamente, surgiram porque empresas como Amazon, Netflix e Google haviam crescido tanto que um único repositório monolítico não dava mais conta — nem técnica, nem socialmente.
+A verdade é que **microserviços não são sobre tecnologia. São sobre organização.**
+E, historicamente, surgiram porque empresas como Amazon, Netflix e Google haviam crescido tanto que um único repositório monolítico não dava mais conta, nem técnica, nem socialmente.
 
 Vamos conversar sobre quando essa arquitetura faz sentido, quais princípios realmente importam e onde quase todo mundo escorrega.
 
@@ -29,7 +29,7 @@ Vamos conversar sobre quando essa arquitetura faz sentido, quais princípios rea
 Lá nos anos 2010, enquanto startups corriam para escalar, gigantes de tecnologia enfrentavam um problema inédito:
 **como dezenas de equipes poderiam entregar features sem ficarem travando umas às outras?**
 
-O monólito modular funcionava até certo ponto — mas quando você tem 200 devs commitando diariamente no mesmo repositório, qualquer refatoração global vira uma operação militar.
+O monólito modular funcionava até certo ponto, mas quando você tem 200 devs commitando diariamente no mesmo repositório, qualquer refatoração global vira uma operação militar.
 
 Microsserviços surgiram como resposta a esse caos organizacional. O problema é que:
 
@@ -47,7 +47,7 @@ Vamos aos critérios sem ilusões nem romantização:
 
 Quando você tem múltiplas equipes que precisam de autonomia para versionar, testar, fazer deploy e quebrar tudo sem derrubar o resto da empresa.
 
-Se sua empresa tem uma equipe de cinco devs, dividir em doze serviços não te dá autonomia — te dá fadiga.
+Se sua empresa tem uma equipe de cinco devs, dividir em doze serviços não te dá autonomia, te dá fadiga.
 
 ### **✔ Escalonamento granular**
 
@@ -142,7 +142,7 @@ O que era para ser EDA vira um emaranhado de mensagens duplicadas e fluxos difí
 
 ## **5. Os Três Maiores Crimes Arquiteturais Cometidos com Microsserviços**
 
-Esses aqui são clássicos. Qualquer arquiteto experiente já viu todos — às vezes no mesmo projeto.
+Esses aqui são clássicos. Qualquer arquiteto experiente já viu todos, às vezes no mesmo projeto.
 
 ### **1. O Monólito Distribuído**
 
@@ -168,7 +168,7 @@ Se vários serviços escrevem no mesmo banco, você:
 * cria dependências invisíveis
 * amarra evoluções de schema
 
-Banco por serviço não é moda — é base da arquitetura.
+Banco por serviço não é moda, é base da arquitetura.
 
 ### **3. Nanosserviços (o famoso over-engineering)**
 

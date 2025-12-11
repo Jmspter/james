@@ -15,7 +15,7 @@ tags:
   - Architecture
 ---
 
-Existe um padrão curioso na indústria tech: toda década alguém decide “reescrever a computação”. Às vezes dá certo (Docker, Kubernetes, V8). Às vezes vira um cemitério de boas intenções (Node core modules, lembram?). Agora, em 2025, isso ganhou um upgrade: não é mais só sobre ferramentas — é sobre **reconstruir a infraestrutura que vai servir de esqueleto para agentes de IA autônoma**.
+Existe um padrão curioso na indústria tech: toda década alguém decide "reescrever a computação". Às vezes dá certo (Docker, Kubernetes, V8). Às vezes vira um cemitério de boas intenções (Node core modules, lembram?). Agora, em 2025, isso ganhou um upgrade: não é mais só sobre ferramentas, é sobre **reconstruir a infraestrutura que vai servir de esqueleto para agentes de IA autônoma**.
 
 E o anúncio da Anthropic no dia 3 de dezembro é exatamente isso:
 
@@ -25,7 +25,7 @@ E não, isso não é apenas "mais um M&A". É uma mudança de placa tectônica.
 
 ---
 
-## IA está escrevendo software — e empresas gigantes já estão deixando
+## IA está escrevendo software, e empresas gigantes já estão deixando
 
 Claude Code começou como uma ferramenta interna. Um “assistente de engenharia”. A promessa era simples: tornar os engenheiros da Anthropic mais rápidos.
 
@@ -80,7 +80,7 @@ E aí vem o detalhe que pouca gente percebeu: a Anthropic já usava Bun antes da
 
 Quando uma empresa de IA multibilionária passa a depender de um runtime JS mantido por um time minúsculo, você já sabe o que acontece a seguir:
 
-> ou ela financia… ou compra.
+> ou ela financia, ou compra.
 
 E dessa vez, optaram pela segunda.
 
@@ -130,7 +130,7 @@ Mike Krieger, hoje CPO da Anthropic, foi direto: o Bun representa a “excelênc
 * engenharia feita do zero
 * foco no mundo real (não em comitês burocráticos)
 
-Eles garantiram que o Bun continua open source e sob MIT. Isso é ótimo… mas não inocente.
+Eles garantiram que o Bun continua open source e sob MIT. Isso é ótimo, mas não inocente.
 
 Manter open source ajuda na imagem e dá aquela sensação de neutralidade para a comunidade. Mas agora:
 
@@ -142,7 +142,7 @@ Ou seja: open source não significa democrático.
 
 ---
 
-## Benefícios: por que isso é grande — muito grande
+## Benefícios: por que isso é grande, muito grande
 
 ### 1. Claude Code fica ainda mais rápido
 
@@ -181,7 +181,7 @@ Comunidade? Segundo plano.
 ### 2. Node.js pode perder relevância
 
 O ecossistema JS já é fragmentado o suficiente.
-Isso pode virar um novo Angular vs React — só que na infraestrutura.
+Isso pode virar um novo Angular vs React, só que na infraestrutura.
 
 ### 3. Dependência corporativa de IA proprietária
 
@@ -217,7 +217,7 @@ E olha onde chegamos.
 
 ---
 
-## Conclusão: Bun + Anthropic não é só uma aquisição — é uma declaração de guerra
+## Conclusão: Bun + Anthropic não é só uma aquisição, é uma declaração de guerra
 
 O movimento deixa claro:
 

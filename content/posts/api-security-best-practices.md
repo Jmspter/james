@@ -18,9 +18,9 @@ tags:
 
 Se tem uma coisa que sempre me surpreende é como, em 2025, ainda preciso repetir conceitos fundamentais de segurança de APIs. A gente vive num mundo onde microserviços conversam com outros microserviços, que falam com gateways externos, que acionam filas, que chamam funções serverless espalhadas em cinco provedores. E, mesmo assim, ainda tem desenvolvedor enviando token JWT pelo `localStorage` ou expondo endpoint de login sem rate limit.
 
-Pois é. Então vamos organizar a bagunça.
+Pós é. Então vamos organizar a bagunça.
 
-Tudo o que vou explicar aqui não é opinião minha — está em documentos extremamente consolidados como **OWASP API Security Top 10**, as recomendações do **NIST**, RFCs do IETF e livros clássicos sobre arquitetura segura. Mas vou apresentar no tom direto que eu gostaria que alguém tivesse usado comigo anos atrás.
+Tudo o que vou explicar aqui não é opinião minha. Está em documentos extremamente consolidados como **OWASP API Security Top 10**, as recomendações do **NIST**, RFCs do IETF e livros clássicos sobre arquitetura segura. Mas vou apresentar no tom direto que eu gostaria que alguém tivesse usado comigo anos atrás.
 
 ---
 
@@ -42,13 +42,13 @@ Um não substitui o outro. Muita API desastrosa nasce justamente da confusão en
 
 ## OAuth2 e OpenID Connect: a dupla que virou padrão de mercado
 
-OAuth2 não é exatamente simples — e não foi feito pra ser. Ele nasceu para resolver problemas de delegação de acesso entre serviços, quando ninguém queria entregar login e senha pra terceiros. Em cima disso, veio o **OpenID Connect**, que adicionou o elemento que faltava: identidade estruturada, assinada, validada.
+OAuth2 não é exatamente simples, e não foi feito pra ser. Ele nasceu para resolver problemas de delegação de acesso entre serviços, quando ninguém queria entregar login e senha pra terceiros. Em cima disso, veio o **OpenID Connect**, que adicionou o elemento que faltava: identidade estruturada, assinada, validada.
 
 É daqui que vem os fluxos que vemos por aí:
 
 * **Authorization Code**: o fluxo clássico para backends que sabem guardar segredo.
 * **PKCE**: a versão moderna e segura para SPAs e apps mobile.
-* **Client Credentials**: microserviço falando com microserviço — sem usuários humanos por perto.
+* **Client Credentials**: microserviço falando com microserviço, sem usuários humanos por perto.
 * **Escopos bem definidos**: o equivalente a não dar a chave mestra da empresa só pra quem quer usar a impressora.
 
 Se você hoje está construindo uma API pública e não está usando OAuth2/ OIDC, provavelmente está reinventando uma roda que já veio redonda há mais de 10 anos.
@@ -74,7 +74,7 @@ token = JWT.encode(payload, secret_key, 'HS256')
 puts token
 ```
 
-Até aqui tudo parece tranquilo. Mas o problema não é gerar o token — é **como** você trata ele depois.
+Até aqui tudo parece tranquilo. Mas o problema não é gerar o token, é **como** você trata ele depois.
 
 ---
 
@@ -87,14 +87,14 @@ Aqui vai o checklist que separa APIs profissionais de experimentos perigosos:
 * Tokens sempre assinados com chave assimétrica (RS256).
 * Verificar **todas** as claims. Nada de confiar só no `sub`.
 * **Nunca**, em hipótese alguma, guardar token sensível em `localStorage`.
-* TLS obrigatório — token sem HTTPS é carta aberta pra roubo.
+* TLS obrigatório. Token sem HTTPS é carta aberta pra roubo.
 * Revogação ativa. Se houve vazamento, mate o token sem dó.
 
 Tudo isso está literalmente descrito no OWASP API Security Top 10 (2023). E ainda assim, todo ano vemos incidentes causados por práticas ruins com tokens.
 
 ---
 
-## Rate Limiting: ou você coloca, ou alguém coloca pra você
+## Rate Limiting: ou você coloca, ou alguém derruba pra você
 
 Toda API exposta ao mundo precisa ser capaz de dizer “calma, respira”.
 Se você não faz isso, alguém vai te derrubar com 3 linhas de curl.
@@ -128,7 +128,7 @@ OWASP repete isso há mais de uma década e, mesmo assim, tem aplicação séria
 As regras básicas:
 
 * Validar tudo: tipo, formato, tamanho, range.
-* Nunca concatenar SQL — use sempre consultas parametrizadas.
+* Nunca concatenar SQL. Use sempre consultas parametrizadas.
 * Sanitizar saídas dependendo do contexto (HTML ≠ JSON ≠ logs).
 * Rejeitar campos extras. Payloads devem ser sempre estritamente definidos.
 
@@ -182,6 +182,6 @@ Segurança de API não é recurso extra, não é add-on, não é plugin.
 É arquitetura.
 
 E arquitetura ruim não se conserta colocando um JWT e um proxy na frente.
-Ela nasce segura — ou nasce com problemas.
+Ela nasce segura, ou nasce com problemas.
 
 Seguir essas práticas não vai “blindar” sua aplicação, mas vai te colocar muito acima da média. E, honestamente, em 2025, isso já deveria ser padrão, não diferencial.

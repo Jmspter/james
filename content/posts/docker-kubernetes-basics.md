@@ -16,9 +16,9 @@ tags:
   - Arquitetura de Software
 ---
 
-A infraestrutura moderna não nasceu pronta — e muita gente esquece disso. Antes dos contêineres, vivíamos em um mundo de bastiões monolíticos, servidores “pet” que tratávamos como se fossem animais de estimação. Se desse problema, a gente cuidava, alimentava, fazia carinho, aplicava patch. A chegada do Docker virou isso de cabeça para baixo, puxando o mercado inteiro para uma cultura de “gado”: se morrer, sobe outro.
+A infraestrutura moderna não nasceu pronta, e muita gente esquece disso. Antes dos contêineres, vivíamos em um mundo de bastiões monolíticos, servidores "pet" que tratávamos como se fossem animais de estimação. Se desse problema, a gente cuidava, alimentava, fazia carinho, aplicava patch. A chegada do Docker virou isso de cabeça para baixo, puxando o mercado inteiro para uma cultura de "gado": se morrer, sobe outro.
 
-Neste texto, quero te levar por essa transição — não só a parte técnica, mas **o contexto**, os tropeços comuns, e as decisões que moldaram como rodamos software hoje.
+Neste texto, quero te levar por essa transição, não só a parte técnica, mas **o contexto**, os tropeços comuns, e as decisões que moldaram como rodamos software hoje.
 
 ---
 
@@ -30,7 +30,7 @@ A containerização veio com uma ideia mais ousada:
 
 > *“E se, em vez de fingir que temos computadores diferentes, a gente apenas isolasse processos dentro do mesmo kernel?”*
 
-O Linux já tinha os ingredientes — cgroups, namespaces, chroot — mas ninguém tinha unido tudo em algo simples de usar. Quando o Docker apareceu em 2013, ele entregou essa simplicidade na bandeja: `docker build`, `docker run`, e pronto. De repente, time de dev não precisava mais brigar com “funciona na minha máquina”.
+O Linux já tinha os ingredientes (cgroups, namespaces, chroot), mas ninguém tinha unido tudo em algo simples de usar. Quando o Docker apareceu em 2013, ele entregou essa simplicidade na bandeja: `docker build`, `docker run`, e pronto. De repente, time de dev não precisava mais brigar com "funciona na minha máquina".
 
 E olha… até hoje tem empresa gigantesca que só descobriu Docker em 2020 pra frente. E ainda errando o básico.
 
@@ -63,7 +63,7 @@ EXPOSE 3000
 CMD ["npm", "start"]
 ```
 
-Isso aqui parece básico? É. Mas **a maioria das equipes ainda erra**. Especialmente o cache — instalar dependências antes de copiar o código faz uma diferença absurda em builds CI/CD.
+Isso aqui parece básico? É. Mas **a maioria das equipes ainda erra**. Especialmente o cache: instalar dependências antes de copiar o código faz uma diferença absurda em builds CI/CD.
 
 ---
 
@@ -97,7 +97,7 @@ A ideia central é simples:
 
 > *Você diz o estado desejado; o Kubernetes garante o estado real.*
 
-Isso é o famoso modelo **declarativo**. E é justamente aí que muita equipe tropeça — tentar usar Kubernetes como se fosse Docker com esteroides.
+Isso é o famoso modelo **declarativo**. E é justamente aí que muita equipe tropeça, tentando usar Kubernetes como se fosse Docker com esteroides.
 
 As principais habilidades do K8s:
 
@@ -117,7 +117,7 @@ Nada daquela gambiarra com Nginx duplicado e regra mal escrita.
 
 ### ✔ **Atualizações rolling**
 
-Sem downtime — isso quando não configuram errado.
+Sem downtime, isso quando não configuram errado.
 
 E sim, ainda hoje tem time colocando `replicas: 1` em produção. É inacreditável.
 
@@ -133,7 +133,7 @@ Aqui vai uma taxonomia rápida, sem enrolação:
 | **Service**    | Endereço estável para acessar pods voláteis.            |
 | **Deployment** | O gerente que garante que sempre existam X réplicas.    |
 | **ConfigMap**  | Configuração não sensível (e muita gente usa errado).   |
-| **Secret**     | Configuração sensível — e muita gente usa pior ainda.   |
+| **Secret**     | Configuração sensível, e muita gente usa pior ainda.   |
 
 Tem empresa que põe senha no ConfigMap e acha que está tudo certo. Não está.
 
@@ -172,7 +172,7 @@ spec:
 ```
 
 O segredo aqui é entender que **isso define o estado desejado**.
-Se um pod cair, o Kubernetes nem pergunta — ele sobe outro.
+Se um pod cair, o Kubernetes nem pergunta, ele sobe outro.
 
 ---
 
@@ -196,8 +196,8 @@ Entender `kubectl` é metade do jogo. Quem domina o CLI domina o Kubernetes.
 Docker padroniza e empacota.
 Kubernetes orquestra e escala.
 
-Um não substitui o outro — são peças diferentes de um quebra-cabeça maior.
+Um não substitui o outro. São peças diferentes de um quebra-cabeça maior.
 
 E, honestamente, por mais que pareça básico, **a maioria dos times ainda tropeça em práticas fundamentais**: imagens enormes, deployments inseguros, ambientes sem limites de recursos, secrets expostos… tudo por falta dessa base.
 
-Dominar Docker e Kubernetes não é opcional em 2025 — é o mínimo pra trabalhar com sistemas modernos.
+Dominar Docker e Kubernetes não é opcional em 2025, é o mínimo pra trabalhar com sistemas modernos.
