@@ -1,7 +1,7 @@
 ---
 title: "Programação no Setor Público: A Nova Fronteira da TI Brasileira"
 excerpt: "A TI pública brasileira está vivendo sua própria “revolução silenciosa”. Entre concursos históricos, migração para nuvem e um governo que finalmente percebeu que não dá para rodar o país em servidor parado no porão."
-image: "/blog/ti-public.png"
+image: "/blog/ti-public.jpg"
 category: "Mercado e Tecnologia"
 author:
   name: "James"

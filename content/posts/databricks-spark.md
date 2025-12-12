@@ -2,7 +2,7 @@
 title: "Databricks, Spark e a Nova Onda da Engenharia de Dados: Por que Todo Mundo Está Falando Disso (e o que Ninguém Conta)"
 excerpt: "Uma análise técnica e estratégica sobre a ascensão do Databricks, o renascimento do Apache Spark e como essa combinação está redefinindo pipelines, carreiras, arquitetura e o futuro da engenharia de dados moderna."
 image: "/blog/databricks-spark.jpg"
-category: "Mercado e Tecnologia"
+category: "DevOps"
 author:
   name: "James"
   avatar: "/about-photo.jpg"
@@ -22,10 +22,10 @@ tags:
 Eu estava rolando o Twitter, aquele habitat natural onde devs misturam desabafo com epifania, quando trombei com um comentário que me chamou atenção. A pessoa dizia algo assim:
 
 > "Primeiras impressões com o Databricks:
-> - estou encantada
-> - dá pra fazer tudo lá: modelar, montar pipeline, versionar
-> - meu primeiro contato com Spark foi mágico e agora quero usar em absolutamente tudo
-> - o free edition me limita demais na execução de jobs e clusters e isso me deixa triste."
+> estou encantada
+> dá pra fazer tudo lá: modelar, montar pipeline, versionar
+> meu primeiro contato com Spark foi mágico e agora quero usar em absolutamente tudo
+> o free edition me limita demais na execução de jobs e clusters e isso me deixa triste."
 
 E foi aí que bateu aquele estalo de curiosidade técnica: *ok, se alguém está descrevendo Spark como "mágico", algo interessante está acontecendo*. Porque, sejamos sinceros, o Spark nunca foi exatamente famoso por sua "magia". Ele é poderoso, sim; elegante, às vezes; mas mágico? Só quando tudo funciona de primeira, ou seja, quase nunca.
 
