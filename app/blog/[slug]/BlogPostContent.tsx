@@ -1,11 +1,12 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ArrowLeft, Clock, Calendar, Tag, ChevronRight } from "lucide-react";
+import { Clock, Calendar, Tag, ChevronRight } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import type { BlogPost } from "@/lib/blog";
 import ShareButtons from "@/components/ShareButtons";
+import { PageHeader, PageFooter } from "@/components/ui";
 
 interface BlogPostContentProps {
     post: BlogPost;
@@ -18,15 +19,11 @@ export default function BlogPostContent({ post, relatedPosts }: BlogPostContentP
     return (
         <main className="min-h-screen bg-bg-main text-text-main">
             {/* Header */}
-            <header className="sticky top-0 z-50 bg-bg-main/80 backdrop-blur-xl border-b border-white/5">
-                <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
-                    <Link href="/blog" className="flex items-center gap-2 text-text-main hover:text-primary transition-colors">
-                        <ArrowLeft className="w-5 h-5" />
-                        <span className="font-medium">Back to Blog</span>
-                    </Link>
-                    <ShareButtons title={post.title} variant="compact" />
-                </div>
-            </header>
+            <PageHeader
+                backHref="/blog"
+                backLabel="Back to Blog"
+                rightContent={<ShareButtons title={post.title} variant="compact" />}
+            />
 
             {/* Breadcrumb */}
             <div className="max-w-4xl mx-auto px-6 py-6">
@@ -174,21 +171,12 @@ export default function BlogPostContent({ post, relatedPosts }: BlogPostContentP
             </article>
 
             {/* Footer */}
-            <footer className="border-t border-white/5 py-8">
-                <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-4">
-                    <p className="text-text-muted text-sm">
-                        © 2024 James. All rights reserved.
-                    </p>
-                    <div className="flex items-center gap-6">
-                        <Link href="/" className="text-text-muted hover:text-primary text-sm transition-colors">
-                            Home
-                        </Link>
-                        <Link href="/blog" className="text-text-muted hover:text-primary text-sm transition-colors">
-                            Blog
-                        </Link>
-                    </div>
-                </div>
-            </footer>
+            <PageFooter
+                links={[
+                    { href: "/", label: "Home" },
+                    { href: "/blog", label: "Blog" },
+                ]}
+            />
         </main>
     );
 }

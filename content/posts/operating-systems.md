@@ -6,7 +6,7 @@ category: "Arquitetura de Software"
 author:
   name: "James"
   avatar: "/about-photo.jpg"
-date: "12 de dezembro de 2025"
+date: "12 de Dez de 2025"
 readTime: "20 min de leitura"
 featured: false
 tags:

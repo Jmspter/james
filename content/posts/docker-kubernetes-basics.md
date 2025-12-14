@@ -6,7 +6,7 @@ category: "DevOps"
 author:
   name: "James"
   avatar: "/about-photo.jpg"
-date: "05 de Novembro de 2025"
+date: "05 de Nov de 2025"
 readTime: "15 min de leitura"
 featured: false
 tags:
@@ -101,21 +101,21 @@ Isso é o famoso modelo **declarativo**. E é justamente aí que muita equipe tr
 
 As principais habilidades do K8s:
 
-### ✔ **Escalabilidade automática**
+### **Escalabilidade automática**
 
 Aumenta ou reduz réplicas baseado em métricas reais.
 
-### ✔ **Auto-cura (self-healing)**
+### **Auto-cura (self-healing)**
 
 Contêiner caiu? Reinicia.
 Node morreu? Reagenda.
 Imagem bugada? Tenta rollback.
 
-### ✔ **Balanceamento inteligente**
+### **Balanceamento inteligente**
 
 Nada daquela gambiarra com Nginx duplicado e regra mal escrita.
 
-### ✔ **Atualizações rolling**
+### **Atualizações rolling**
 
 Sem downtime, isso quando não configuram errado.
 
