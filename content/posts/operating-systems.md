@@ -195,21 +195,26 @@ Eu uso **Omarchy**, a distro criada pelo DHH (o cara que inventou o Rails e já 
 
 ---
 
-### O Fedora Plasma do meu amigo (ou a busca secreta pelo MacBook espiritual)
+## **O Fedora Workstation do meu amigo (ou a busca secreta pelo MacBook espiritual)**
 
-Meu amigo, por outro lado, usa **Fedora com KDE Plasma**.
+Meu amigo, por outro lado, usa **Fedora Workstation**, aquele que vem com o **GNOME** puro, polido, alinhado e cheio de jeitinho minimalista.
 
-Ele jura que é porque o Fedora é “mais moderno”, “mais alinhado à tecnologia de ponta”, “mais avançado” e não sei o quê. Mas eu tenho certeza absoluta, e falo isso com carinho, que o motivo real é bem mais simples:
+Ele jura que é porque o Fedora é “mais moderno”, “mais alinhado às tecnologias de ponta”, “mais avançado”, “mais corporativo”, “mais preparado para o futuro” — e toda semana inventa um adjetivo novo.
 
-**ele só quer deixar o PC dele igual a um MacBook.**
+Mas eu tenho quase certeza, e digo isso com todo carinho do mundo:
 
-(KDE Plasma é perigosamente bom nisso.)
+**ele só quer deixar o PC dele o mais parecido possível com um MacBook.**
 
-E veja só, não estou julgando. Pelo contrário: acho que faz todo sentido.
-O Plasma é realmente bonito, moderno, configurável, cheio de animações e detalhes que fazem você pensar: *“caramba, meu computador finalmente cresceu e ficou elegante.”*
+(GNOME é *perigosamente* bom nisso.)
 
-Mas essa escolha também revela outra coisa:
-**ele quer um sistema operacional que seja poderoso, mas também acolhedor, que não faça ele sentir que está brigando com a máquina.**
+E veja, eu não estou julgando.
+Pelo contrário: faz total sentido.
+
+O GNOME tem aquela vibe limpa, aquelas transições suaves, gestos de trackpad que te fazem pensar *“cara… este computador acabou de evoluir espiritualmente”*.
+Minimalista, elegante, opinado: ele dá a sensação de que o sistema finalmente encontrou seu propósito na vida.
+
+E honestamente?
+Se eu quisesse transformar meu notebook num Mac filosófico de baixo orçamento, eu provavelmente faria a mesma coisa.
 
 ---
 
