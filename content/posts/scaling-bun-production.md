@@ -1,7 +1,7 @@
 ---
 title: "Escalabilidade em Produção com Bun: Uma Abordagem de Alta Performance"
 excerpt: "Uma análise sobre as estratégias de escalabilidade utilizando o runtime Bun. Otimização de throughput, balanceamento de carga e arquitetura de sistemas de baixa latência."
-image: "/blog/bun-scaling.jpg"
+image: "/blog/bun-scaling.webp"
 category: "Backend"
 author:
   name: "James"

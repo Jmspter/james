@@ -1,7 +1,7 @@
 ---
 title: "De Docker a Kubernetes: o Caminho que Todo Dev Eventualmente Descobre na Marra"
 excerpt: "Uma investigação aprofundada sobre os paradigmas de containerização e orquestração de sistemas distribuídos, com um guia prático para implementação de clusters Kubernetes."
-image: "/blog/kubernetes.jpg"
+image: "/blog/kubernetes.webp"
 category: "DevOps"
 author:
   name: "James"

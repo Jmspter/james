@@ -1,7 +1,7 @@
 ---
 title: "Microsserviços: Quando Eles Fazem Sentido (E Quando São Só Dor de Cabeça Cara)"
 excerpt: "A decomposição de sistemas monolíticos em serviços distribuídos. Uma análise sobre critérios de adoção, estratégias de implementação e mitigação de anti-padrões."
-image: "/blog/microservices.jpg"
+image: "/blog/microservices.webp"
 category: "Arquitetura de Software"
 author:
   name: "James"

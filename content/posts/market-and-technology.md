@@ -1,7 +1,7 @@
 ---
 title: "Mercado de Tecnologia: minerando no escuro desde sempre"
 excerpt: "TI nunca foi um porto seguro; ela apenas pareceu estável por uma década. Hoje, vivemos a conta dessa ilusão. Deixamos de ser artesãos de código insubstituíveis para nos tornarmos peças de um 'Lego corporativo', onde a fragmentação técnica tornou a substituição barata. Uma reflexão honesta sobre a instabilidade da área, o fim da corrida do ouro e por que ainda insistimos em minerar no escuro."
-image: "/blog/market-and-technology.jpg"
+image: "/blog/market-and-technology.webp"
 category: "Mercado e Tecnologia"
 author:
   name: "James"

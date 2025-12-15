@@ -1,7 +1,7 @@
 ---
 title: "React, Rust e o Futuro da Programação"
 excerpt: "Uma reflexão honesta sobre segurança, performance e por que estamos repensando React enquanto Rust ganha espaço no futuro da engenharia de software."
-image: "/blog/react-rust.jpg"
+image: "/blog/react-rust.webp"
 category: "Mercado e Tecnologia"
 author:
   name: "James"

@@ -1,7 +1,7 @@
 ---
 title: "Segurança de APIs: o básico que todo mundo deveria saber (mas não sabe)"
 excerpt: "Protegendo APIs contra vulnerabilidades comuns. OAuth2, JWT, rate limiting e padrões modernos de segurança aplicados."
-image: "/blog/api-security.jpg"
+image: "/blog/api-security.webp"
 category: "Segurança"
 author:
   name: "James"

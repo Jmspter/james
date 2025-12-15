@@ -1,7 +1,7 @@
 ---
 title: "Como Sistemas Operacionais Realmente Funcionam e o Que Isso Diz Sobre Nós"
 excerpt: "O que aprendi vendo um Kernel nascer: a computação não evolui, ela apenas acumula camadas."
-image: "/blog/operating-systems.jpg"
+image: "/blog/operating-systems.webp"
 category: "Arquitetura de Software"
 author:
   name: "James"

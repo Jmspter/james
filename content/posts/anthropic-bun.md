@@ -1,7 +1,7 @@
 ---
 title: "Aquisição da Bun pela Anthropic e o Efeito Claude Code: O Futuro da Engenharia Já Chegou, e Não Estamos Preparados"
 excerpt: "Uma avaliação técnica e estratégica da aquisição da Bun pela Anthropic e do rápido crescimento do Claude Code, considerando implicações para infraestrutura, mercado de IA e ecossistema JavaScript."
-image: "/blog/anthropic-bun.jpg"
+image: "/blog/anthropic-bun.webp"
 category: "Mercado e Tecnologia"
 author:
   name: "James"

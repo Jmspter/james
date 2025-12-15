@@ -1,7 +1,7 @@
 ---
 title: "Databricks, Spark e a Nova Onda da Engenharia de Dados: Por que Todo Mundo Está Falando Disso (e o que Ninguém Conta)"
 excerpt: "Uma análise técnica e estratégica sobre a ascensão do Databricks, o renascimento do Apache Spark e como essa combinação está redefinindo pipelines, carreiras, arquitetura e o futuro da engenharia de dados moderna."
-image: "/blog/databricks-spark.jpg"
+image: "/blog/databricks-spark.webp"
 category: "DevOps"
 author:
   name: "James"
