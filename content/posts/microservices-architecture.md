@@ -43,13 +43,13 @@ E é aí que nascem os sistemas distribuídos desnecessariamente complexos.
 
 Vamos aos critérios sem ilusões nem romantização:
 
-### **✔ Escalabilidade organizacional**
+### **Escalabilidade organizacional**
 
 Quando você tem múltiplas equipes que precisam de autonomia para versionar, testar, fazer deploy e quebrar tudo sem derrubar o resto da empresa.
 
 Se sua empresa tem uma equipe de cinco devs, dividir em doze serviços não te dá autonomia, te dá fadiga.
 
-### **✔ Escalonamento granular**
+### **Escalonamento granular**
 
 Nem todo módulo cresce do mesmo jeito.
 
@@ -59,7 +59,7 @@ Nem todo módulo cresce do mesmo jeito.
 
 Se cada parte demanda recursos muito diferentes, microsserviços podem ser vantagem.
 
-### **✔ Heterogeneidade tecnológica**
+### **Heterogeneidade tecnológica**
 
 Esse é o famoso “cada problema com a melhor ferramenta”.
 

@@ -5,3 +5,4 @@ export { default as PageHeader } from "./PageHeader";
 export { default as BlogPostCard } from "./BlogPostCard";
 export { default as ProjectCard } from "./ProjectCard";
 export { default as FeaturedCarousel } from "./FeaturedCarousel";
+export { default as TableOfContents } from "./TableOfContents";

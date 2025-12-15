@@ -8,7 +8,7 @@ author:
   avatar: "/about-photo.jpg"
 date: "28 Out 2025"
 readTime: "9 min read"
-featured: true
+featured: false
 tags:
   - Segurança
   - API
