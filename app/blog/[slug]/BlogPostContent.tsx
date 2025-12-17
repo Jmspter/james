@@ -6,16 +6,18 @@ import Image from "next/image";
 import Link from "next/link";
 import type { BlogPost } from "@/lib/blog";
 import ShareButtons from "@/components/ShareButtons";
+import LikeButton from "@/components/LikeButton";
 import { PageHeader, PageFooter, TableOfContents } from "@/components/ui";
 
 interface BlogPostContentProps {
     post: BlogPost;
     relatedPosts: BlogPost[];
+    initialLikes: number;
 }
 
 const defaultAuthorBio = "Backend developer passionate about building scalable systems and sharing knowledge.";
 
-export default function BlogPostContent({ post, relatedPosts }: BlogPostContentProps) {
+export default function BlogPostContent({ post, relatedPosts, initialLikes }: BlogPostContentProps) {
     return (
         <main className="min-h-screen bg-bg-main text-text-main">
             {/* Header */}
@@ -137,15 +139,23 @@ export default function BlogPostContent({ post, relatedPosts }: BlogPostContentP
                             </motion.div>
                         )}
 
-                        {/* Share Section */}
+                        {/* Like & Share Section */}
                         <motion.div
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ delay: 0.25 }}
                             className="mt-8 p-6 bg-bg-surface/50 rounded-2xl border border-white/5"
                         >
-                            <p className="text-text-muted mb-4">Share this article</p>
-                            <ShareButtons title={post.title} />
+                            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-6">
+                                <div>
+                                    <p className="text-text-muted mb-3">Gostou do artigo?</p>
+                                    <LikeButton postSlug={post.id} initialLikes={initialLikes} />
+                                </div>
+                                <div className="sm:text-right">
+                                    <p className="text-text-muted mb-3">Compartilhe</p>
+                                    <ShareButtons title={post.title} />
+                                </div>
+                            </div>
                         </motion.div>
 
                         {/* Related Posts */}

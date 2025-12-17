@@ -1,6 +1,7 @@
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { getBlogPost, getRelatedPosts, getAllPosts } from "@/lib/blog";
+import { getLikeCount } from "@/lib/likes";
 import BlogPostContent from "./BlogPostContent";
 
 interface PageProps {
@@ -74,6 +75,7 @@ export default async function BlogPostPage({ params }: PageProps) {
     }
     
     const relatedPosts = getRelatedPosts(slug, 3);
+    const likeCount = await getLikeCount(slug);
     
     const jsonLd = {
         "@context": "https://schema.org",
@@ -108,7 +110,7 @@ export default async function BlogPostPage({ params }: PageProps) {
                 type="application/ld+json"
                 dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
             />
-            <BlogPostContent post={post} relatedPosts={relatedPosts} />
+            <BlogPostContent post={post} relatedPosts={relatedPosts} initialLikes={likeCount} />
         </>
     );
 }
